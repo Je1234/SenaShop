@@ -12,7 +12,7 @@
 
 	<meta name="keyword" content="Lorem ipsum, dolor sit amet, consectetur, adipisicing, elit, Quisquam, accusantium, enim, esse">
 
-	<title>Tienda Virtual</title>
+	<title>SENASHOP</title>
 	<script src="<?php echo $url; ?>vistas/js/plugins/jquery.min.js"></script>
 	<?php
          $servidor = Ruta::ctrRutaServidor();
@@ -27,6 +27,9 @@
 		$url = Ruta::ctrRuta();
 
 	?>
+	<!--=============================================
+		PLUGINS CSS
+		=============================================-->
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/bootstrap.min.css">
 
@@ -35,17 +38,23 @@
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Condensed" rel="stylesheet">
+
+	<!--########################################
+	HOJA DE ESTILOS PERSONALIZADA
+	############################################-->
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/slide1.css">
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plantilla.css">
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/cabezote.css">
+   
+	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/productos.css">
 
 	
-
-	
-	
-	       
+     <!--=============================================
+		PLUGINS DE JQUERY
+		=============================================-->
+		
 
 	
 
@@ -123,10 +132,13 @@ if(isset($_GET["ruta"])){
 
 }else{
 	include "modulos/slide.php";
+	include "modulos/destacados.php";
 }
 
 ?>
-
+<!--=============================================
+		javascript personalizado
+		=============================================-->
 <script src="<?php echo $url; ?>vistas/js/cabezote.js"></script>
 <script src="<?php echo $url; ?>vistas/js/plantilla.js"></script>
 <script src="<?php echo $url; ?>vistas/js/slide1.js"></script>
