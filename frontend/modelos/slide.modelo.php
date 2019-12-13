@@ -1,20 +1,21 @@
 <?php
 
-
 require_once "conexion.php";
 
 class ModeloSlide{
 
-    static public function mdlMostrarSlide($tabla){
+	static public function mdlMostrarSlide($tabla){
 
-        $stmt=Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-        $stmt -> execute();
+		$stmt -> execute();
 
-        return $stmt -> fetchAll();
+		return $stmt -> fetchAll();
 
-        $stmt -> close();
+		$stmt -> close();
 
-        $stmt = null;
-    }
+		$stmt = null;
+
+	}
+
 }

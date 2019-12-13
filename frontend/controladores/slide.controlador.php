@@ -2,11 +2,14 @@
 
 class ControladorSlide{
 
-    public function ctrMostrarSlide(){
-            $tabla="slide";
+	public function ctrMostrarSlide(){
 
-            $respuesta =ModeloSlide::mdlMostrarSlide($tabla);
+		$tabla = "slide";
 
-            return $respuesta;
-    }
+		$respuesta = ModeloSlide::mdlMostrarSlide($tabla);
+
+		return $respuesta;
+		
+	}
+
 }

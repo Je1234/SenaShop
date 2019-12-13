@@ -1,13 +1,21 @@
 <?php
 
 class Ruta{
-/*Cliente*/
+
+	/*=============================================
+	RUTA LADO DEL CLIENTE
+	=============================================*/	
+
 	public function ctrRuta(){
 
 		return "http://localhost/frontend/";
 	
 	}
-/*Servidor */
+
+	/*=============================================
+	RUTA LADO DEL SERVIDOR
+	=============================================*/	
+
 	public function ctrRutaServidor(){
 
 		return "http://localhost/backend/";
