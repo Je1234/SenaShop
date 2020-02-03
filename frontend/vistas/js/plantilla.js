@@ -118,23 +118,17 @@ var url = window.location.href;
 
 var indice = url.split("/");
 
-console.log("indice", indice);
-
-var pagActual = indice[5];
-console.log("pagActual", pagActual);
+var pagActual =indice[5];
 
 if(isNaN(pagActual)){
 
-	$("#item1").addClass("active");
-
+   $("#item1").addClass("active");
+   
 }else{
-	
-	$("#item"+pagActual).addClass("active");	
+
+   $("#item"+pagActual).addClass("active");
+ 
 }
-
-
-
-
 
 
 

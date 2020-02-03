@@ -1,6 +1,7 @@
 /*=============================================
 BUSCADOR
 =============================================*/
+
 $("#buscador a").click(function(){
 
 	if($("#buscador input").val() == ""){
@@ -10,7 +11,6 @@ $("#buscador a").click(function(){
 	}
 
 })
-
 
 $("#buscador input").change(function(){
 
@@ -32,7 +32,14 @@ $("#buscador input").change(function(){
 
 			$("#buscador a").attr("href", rutaBuscador+"/"+evaluarBusqueda);
 
+		}else{
+
+
+			$("#buscador a").attr("href", "inicio");
 		}
+
+
+
 
 	}
 
