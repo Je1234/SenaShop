@@ -641,7 +641,7 @@ class ControladorUsuarios{
 				list($ancho, $alto) = getimagesize($_FILES["datosImagen"]["tmp_name"]);
 
 				$nuevoAncho = 500;
-				$nuevoAlto = 500;
+				$nuevoAlto = 500;	
 
 				$aleatorio = mt_rand(100, 999);
 
@@ -652,7 +652,6 @@ class ControladorUsuarios{
 					/*=============================================
 					MOFICAMOS TAMAÑO DE LA FOTO
 					=============================================*/
-
 
 					$origen = imagecreatefromjpeg($_FILES["datosImagen"]["tmp_name"]);
 
