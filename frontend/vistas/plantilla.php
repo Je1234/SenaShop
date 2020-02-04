@@ -12,7 +12,7 @@
 
 	<meta name="keyword" content="Lorem ipsum, dolor sit amet, consectetur, adipisicing, elit, Quisquam, accusantium, enim, esse">
 
-	<title>Tienda Virtual</title>
+	<title>Sena Shop</title>
 
 	<?php
 
@@ -64,6 +64,8 @@
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/perfil.css">
 
+	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/carrito-de-compras.css">
+
 	<!--=====================================
 	PLUGINS DE JAVASCRIPT
 	======================================-->
@@ -79,6 +81,8 @@
 	<script src="<?php echo $url; ?>vistas/js/plugins/jquery.flexslider.js"></script>
 
 	<script src="<?php echo $url; ?>vistas/js/plugins/sweetalert.min.js"></script>
+
+	<script src="<?php echo $url; ?>vistas/js/plugins/md5-min.js"></script>
 
 </head>
 
@@ -159,7 +163,7 @@ if(isset($_GET["ruta"])){
 
 		include "modulos/infoproducto.php";
 
-	}else if($rutas[0] == "buscador" || $rutas[0] == "verificar" || $rutas[0] == "salir" || $rutas[0] == "perfil"){
+	}else if($rutas[0] == "buscador" || $rutas[0] == "verificar" || $rutas[0] == "salir" || $rutas[0] == "perfil" || $rutas[0] == "carrito-de-compras" || $rutas[0] == "error" || $rutas[0] == "finalizar-compra" || $rutas[0] == "curso"){
 
 		include "modulos/".$rutas[0].".php";
 
@@ -192,6 +196,7 @@ JAVASCRIPT PERSONALIZADO
 <script src="<?php echo $url; ?>vistas/js/infoproducto.js"></script>
 <script src="<?php echo $url; ?>vistas/js/usuarios.js"></script>
 <script src="<?php echo $url; ?>vistas/js/registroFacebook.js"></script>
+<script src="<?php echo $url; ?>vistas/js/carrito-de-compras.js"></script>
 
 <!--=====================================
 https://developers.facebook.com/

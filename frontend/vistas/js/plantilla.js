@@ -110,7 +110,6 @@ if(pagActiva != null){
 
 }
 
-
 /*=============================================
 ENLACES PAGINACIÓN
 =============================================*/
@@ -130,6 +129,8 @@ if(isNaN(pagActual)){
    $("#item"+pagActual).addClass("active");
  
 }
+
+
 
 
 
