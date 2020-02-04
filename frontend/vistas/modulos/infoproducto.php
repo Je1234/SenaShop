@@ -44,6 +44,7 @@ INFOPRODUCTOS
 
 				$multimedia = json_decode($infoproducto["multimedia"],true);
 
+
 				/*=============================================
 				VISOR DE IMÁGENES
 				=============================================*/
@@ -77,7 +78,6 @@ INFOPRODUCTOS
 								}
 
 							}		
-							    		
 							    						 
 							  echo '</ul>
 
@@ -187,6 +187,7 @@ INFOPRODUCTOS
 
 						<p class="tituloCarritoCompra text-left">'.$infoproducto["titulo"].'</p>';
 
+
 						if($infoproducto["oferta"] == 0){
 
 							echo'<input class="cantidadItem" value="1" tipo="'.$infoproducto["tipo"].'" precio="'.$infoproducto["precio"].'" idProducto="'.$infoproducto["id"].'">
@@ -228,7 +229,11 @@ INFOPRODUCTOS
 					
 					if($infoproducto["oferta"] == 0){
 
-						if($infoproducto["nuevo"] == 0){
+						$fecha = date('Y-m-d');
+						$fechaActual = strtotime('-30 day', strtotime($fecha));
+						$fechaNueva = date('Y-m-d', $fechaActual);
+
+						if($fechaNueva > $infoproducto["fecha"]){
 
 							echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'</h1>';
 
@@ -250,34 +255,45 @@ INFOPRODUCTOS
 
 					}else{
 
-						if($infoproducto["nuevo"] == 0){
+						$fecha = date('Y-m-d');
+						$fechaActual = strtotime('-30 day', strtotime($fecha));
+						$fechaNueva = date('Y-m-d', $fechaActual);
+
+						if($fechaNueva > $infoproducto["fecha"]){
 
 							echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'
 
-							<br>
+							<br>';
 
-							<small>
-						
-								<span class="label label-warning">'.$infoproducto["descuentoOferta"].'% off</span>
+							if($infoproducto["precio"] != 0){
 
-							</small>
+								echo '<small>
 							
-							</h1>';
+									<span class="label label-warning">'.$infoproducto["descuentoOferta"].'% off</span>
+
+								</small>';
+
+							}
+							
+							echo '</h1>';
 
 						}else{
 
 							echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'
 
-							<br>
+							<br>';
 
-							<small>
-								<span class="label label-warning">Nuevo</span> 
-								<span class="label label-warning">'.$infoproducto["descuentoOferta"].'% off</span> 
+							if($infoproducto["precio"] != 0){
 
+								echo '<small>
+									<span class="label label-warning">Nuevo</span> 
+									<span class="label label-warning">'.$infoproducto["descuentoOferta"].'% off</span> 
 
-							</small>
+								</small>';
+
+							}
 							
-							</h1>';
+							echo '</h1>';
 
 						}
 					}
@@ -605,17 +621,40 @@ INFOPRODUCTOS
 
 						echo '<div class="col-md-6 col-xs-12">';
 
+						if(isset($_SESSION["validarSesion"]) && $_SESSION["validarSesion"] == "ok"){
+
 							if($infoproducto["tipo"]=="virtual"){
 						
-								echo '<button class="btn btn-default btn-block btn-lg backColor">ACCEDER AHORA</button>';
+								echo '<button class="btn btn-default btn-block btn-lg backColor agregarGratis" idProducto="'.$infoproducto["id"].'" idUsuario="'.$_SESSION["id"].'" tipo="'.$infoproducto["tipo"].'" titulo="'.$infoproducto["titulo"].'">ACCEDER AHORA</button>';
 
 							}else{
 
-								echo '<button class="btn btn-default btn-block btn-lg backColor">SOLICITAR AHORA</button>';
+								echo '<button class="btn btn-default btn-block btn-lg backColor agregarGratis" idProducto="'.$infoproducto["id"].'" idUsuario="'.$_SESSION["id"].'" tipo="'.$infoproducto["tipo"].'" titulo="'.$infoproducto["titulo"].'">SOLICITAR AHORA</button>
+
+									<br>
+
+									<div class="col-xs-12 panel panel-info text-left">
+
+									<strong>¡Atención!</strong>
+
+										El producto a solicitar es totalmente gratuito y se enviará a la dirección solicitada, sólo se cobrará los cargos de envío.
+
+									</div>
+								';
 
 							}
 
-							echo '</div>';
+						}else{
+
+							echo '<a href="#modalIngreso" data-toggle="modal">
+
+								<button class="btn btn-default btn-block btn-lg backColor">	SOLICITAR AHORA</button>
+
+							</a>';
+
+						}
+
+						echo '</div>';
 
 					}else{
 
@@ -641,11 +680,20 @@ INFOPRODUCTOS
 
 							echo '</div>
 
-								<div class="col-md-6 col-xs-12">
-									
-									<button class="btn btn-default btn-block btn-lg backColor agregarCarrito"  idProducto="'.$infoproducto["id"].'" imagen="'.$servidor.$infoproducto["portada"].'" titulo="'.$infoproducto["titulo"].'" precio="'.$infoproducto["precio"].'" tipo="'.$infoproducto["tipo"].'" peso="'.$infoproducto["peso"].'">
+								<div class="col-md-6 col-xs-12">';
 
-									<small>ADICIONAR AL CARRITO</small> 
+								if($infoproducto["oferta"] != 0){
+									
+									echo '<button class="btn btn-default btn-block btn-lg backColor agregarCarrito"  idProducto="'.$infoproducto["id"].'" imagen="'.$servidor.$infoproducto["portada"].'" titulo="'.$infoproducto["titulo"].'" precio="'.$infoproducto["precioOferta"].'" tipo="'.$infoproducto["tipo"].'" peso="'.$infoproducto["peso"].'">';
+
+								}else{
+
+									echo '<button class="btn btn-default btn-block btn-lg backColor agregarCarrito"  idProducto="'.$infoproducto["id"].'" imagen="'.$servidor.$infoproducto["portada"].'" titulo="'.$infoproducto["titulo"].'" precio="'.$infoproducto["precio"].'" tipo="'.$infoproducto["tipo"].'" peso="'.$infoproducto["peso"].'">';
+
+
+								}
+
+								echo   '<small>ADICIONAR AL CARRITO</small> 
 
 									<i class="fa fa-shopping-cart col-md-0"></i>
 
@@ -654,11 +702,20 @@ INFOPRODUCTOS
 								</div>';
 						}else{
 
-							echo '<div class="col-lg-6 col-md-8 col-xs-12">
-									
-									<button class="btn btn-default btn-block btn-lg backColor agregarCarrito"  idProducto="'.$infoproducto["id"].'" imagen="'.$servidor.$infoproducto["portada"].'" titulo="'.$infoproducto["titulo"].'" precio="'.$infoproducto["precio"].'" tipo="'.$infoproducto["tipo"].'" peso="'.$infoproducto["peso"].'">
+							echo '<div class="col-lg-6 col-md-8 col-xs-12">';
 
-									ADICIONAR AL CARRITO 
+							if($infoproducto["oferta"] != 0){
+									
+									echo '<button class="btn btn-default btn-block btn-lg backColor agregarCarrito"  idProducto="'.$infoproducto["id"].'" imagen="'.$servidor.$infoproducto["portada"].'" titulo="'.$infoproducto["titulo"].'" precio="'.$infoproducto["precioOferta"].'" tipo="'.$infoproducto["tipo"].'" peso="'.$infoproducto["peso"].'">';
+
+								}else{
+
+									echo '<button class="btn btn-default btn-block btn-lg backColor agregarCarrito"  idProducto="'.$infoproducto["id"].'" imagen="'.$servidor.$infoproducto["portada"].'" titulo="'.$infoproducto["titulo"].'" precio="'.$infoproducto["precio"].'" tipo="'.$infoproducto["tipo"].'" peso="'.$infoproducto["peso"].'">';
+
+								}
+
+
+									echo 'ADICIONAR AL CARRITO 
 
 									<i class="fa fa-shopping-cart"></i>
 
@@ -719,8 +776,7 @@ INFOPRODUCTOS
 
 			<?php
 
-				
-			$cantidadCalificacion = 0;
+				$cantidadCalificacion = 0;
 
 				if($cantidad == 0){
 
@@ -1089,8 +1145,10 @@ ARTÏCULOS RELACIONADOS
 				echo '<ul class="grid0">';
 
 				foreach ($relacionados as $key => $value) {
+
+				if($value["estado"] != 0){
 				
-				echo '<li class="col-md-3 col-sm-6 col-xs-12">
+					echo '<li class="col-md-3 col-sm-6 col-xs-12">
 
 						<figure>
 							
@@ -1102,6 +1160,8 @@ ARTÏCULOS RELACIONADOS
 
 						</figure>
 
+						'.$value["id"].'
+
 						<h4>
 				
 							<small>
@@ -1112,13 +1172,17 @@ ARTÏCULOS RELACIONADOS
 
 									<span style="color:rgba(0,0,0,0)">-</span>';
 
-									if($value["nuevo"] != 0){
+									$fecha = date('Y-m-d');
+									$fechaActual = strtotime('-30 day', strtotime($fecha));
+									$fechaNueva = date('Y-m-d', $fechaActual);
+
+									if($fechaNueva < $value["fecha"]){
 
 										echo '<span class="label label-warning fontSize">Nuevo</span> ';
 
 									}
 
-									if($value["oferta"] != 0){
+									if($value["oferta"] != 0 && $value["precio"] != 0){
 
 										echo '<span class="label label-warning fontSize">'.$value["descuentoOferta"].'% off</span>';
 
@@ -1209,7 +1273,9 @@ ARTÏCULOS RELACIONADOS
 						</div>
 
 					</li>';
+
 				}
+			}
 
 			echo '</ul>';
 
@@ -1405,3 +1471,51 @@ VENTANA MODAL PARA CHECKOUT
 	</div>
 
 </div>
+
+
+<?php
+
+if($infoproducto["tipo"] == "fisico"){
+
+	echo '<script type="application/ld+json">
+
+			{
+			  "@context": "http://schema.org/",
+			  "@type": "Product",
+			  "name": "'.$infoproducto["titulo"].'",
+			  "image": [';
+
+			  for($i = 0; $i < count($multimedia); $i ++){
+
+			  	echo $servidor.$multimedia[$i]["foto"].',';
+
+			  }
+			
+			  echo '],
+			  "description": "'.$infoproducto["descripcion"].'"
+	  
+			}
+
+		</script>';
+
+}else{
+
+	echo '<script type="application/ld+json">
+
+			{
+			  "@context": "http://schema.org",
+			  "@type": "Course",
+			  "name": "'.$infoproducto["titulo"].'",
+			  "description": "'.$infoproducto["descripcion"].'",
+			  "provider": {
+			    "@type": "Organization",
+			    "name": "Tu Logo",
+			    "sameAs": "'.$url.$infoproducto["ruta"].'"
+			  }
+			}
+
+		</script>';
+
+}
+
+?>

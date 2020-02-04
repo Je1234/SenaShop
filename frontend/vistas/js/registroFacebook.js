@@ -175,7 +175,7 @@ $(".salir").click(function(e){
 
 	 	 		deleteCookie("fblo_307504983059062");
 
-	 	 		console.log("salir");
+	 	 		// console.log("salir");
 
 	 	 		setTimeout(function(){
 

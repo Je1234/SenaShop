@@ -32,8 +32,11 @@ CUADRÍCULA O LISTA
 =============================================*/
 
 var btnList = $(".btnList");
+var btnGrid = $(".btnGrid");
 
 for(var i = 0; i < btnList.length; i++){
+
+	$(btnGrid[i]).addClass("backColor");
 
 	$("#btnGrid"+i).click(function(){
 
@@ -43,8 +46,8 @@ for(var i = 0; i < btnList.length; i++){
 		$(".grid"+numero).show();
 
 		$("#btnGrid"+numero).addClass("backColor");
+		$("#btnList"+numero).attr("style","");
 		$("#btnList"+numero).removeClass("backColor");
-
 	})
 
 	$("#btnList"+i).click(function(){
@@ -53,9 +56,10 @@ for(var i = 0; i < btnList.length; i++){
 
 		$(".list"+numero).show();
 		$(".grid"+numero).hide();
-
-		$("#btnGrid"+numero).removeClass("backColor");
+		
 		$("#btnList"+numero).addClass("backColor");
+		$("#btnGrid"+numero).attr("style","");
+		$("#btnGrid"+numero).removeClass("backColor");
 
 	})
 
@@ -129,6 +133,125 @@ if(isNaN(pagActual)){
    $("#item"+pagActual).addClass("active");
  
 }
+
+/*=============================================
+OFERTAS
+=============================================*/
+$(".cerrarOfertas").click(function(){
+
+	$(this).parent().remove();
+
+})
+
+if($("#moduloOfertas").children().length == 0){
+
+	$("#moduloOfertas").html(
+		'<div class="jumbotron">'+
+
+		'<h1 class="text-center">Lo sentimos</h1>'+
+
+			'<h3 class="text-center">¡En estos momentos no hay ofertas disponibles!</h3>'+ 
+				 
+		'</div>'
+
+	);
+}
+
+/*=============================================
+CONTADOR DE TIEMPO
+=============================================*/
+
+var finOferta = $(".countdown");
+var fechaFinOferta = [];
+
+for(var i = 0; i < finOferta.length; i++){
+
+	fechaFinOferta[i] = $(finOferta[i]).attr("finOferta");
+
+	$(finOferta[i]).dsCountDown({
+
+	endDate: new Date(fechaFinOferta[i]),
+
+	theme: 'flat', 
+
+	titleDays: 'Días', 
+
+	titleHours: 'Horas', 
+
+	titleMinutes: 'Minutos', 
+
+	titleSeconds: 'Segundos' 
+
+
+	});
+
+
+}
+
+/*=============================================
+CONTADOR DE TIEMPO OFERTAS PRODUCTOS
+=============================================*/
+
+var finOferta2 = $('.countdown2').attr("finOferta");
+
+$('.countdown2').dsCountDown({
+	endDate: new Date(finOferta2),
+	theme: 'black',
+	titleDays: 'Dias', 
+	titleHours: 'Horas', 
+	titleMinutes: 'Min', 
+	titleSeconds: 'Seg'
+
+});
+
+
+/*=============================================
+EVENTOS PIXEL DE FACEBOOK
+=============================================*/
+
+$(".pixelCategorias").click(function(){
+
+	var titulo = $(this).attr("titulo");
+
+	fbq('track', 'Categoria '+titulo, {
+
+		title: titulo
+
+	})
+
+})
+
+$(".pixelSubCategorias").click(function(){
+
+	var titulo = $(this).attr("titulo");
+
+	fbq('track', 'Subcategoria '+titulo, {
+
+		title: titulo
+
+	})
+
+})
+
+
+$(".pixelOferta").click(function(){
+
+	var titulo = $(this).attr("titulo");
+
+	fbq('track', 'Oferta '+titulo, {
+
+		title: titulo
+
+	})
+
+})
+
+
+
+
+
+
+
 
 
 

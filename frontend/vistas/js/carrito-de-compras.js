@@ -146,7 +146,7 @@ if(localStorage.getItem("listaProductos") != null){
 				EVITAR MANIPULAR LA CANTIDAD EN PRODUCTOS VIRTUALES
 				=============================================*/
 
-				$(".cantidadItem[tipo='virtual']").attr("readonly","true");
+				$(".cantidadItem[tipo='virtual']").attr("readonly","true");	
 
 				/*=============================================
 				/*=============================================
@@ -169,8 +169,7 @@ if(localStorage.getItem("listaProductos") != null){
 					sumaSubtotales();
 					cestaCarrito(precioCarritoCompra.length);
 
-				}
-					
+				}			
 
 			}
 		
@@ -240,8 +239,6 @@ $(".agregarCarrito").click(function(){
 		var seleccionarDetalle = $(".seleccionarDetalle");
 		
 		for(var i = 0; i < seleccionarDetalle.length; i++){
-
-			console.log("seleccionarDetalle", $(seleccionarDetalle[i]).val());
 
 			if($(seleccionarDetalle[i]).val() == ""){
 
@@ -449,7 +446,7 @@ $(document).on("change", ".cantidadItem", function(){
 	var item = $(this).attr("item");
 
 	$(".subTotal"+item).html('<strong>USD $<span>'+(cantidad*precio)+'</span></strong>');
-
+	
 	/*=============================================
 	ACTUALIZAR LA CANTIDAD EN EL LOCALSTORAGE
 	=============================================*/

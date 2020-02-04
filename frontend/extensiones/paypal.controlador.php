@@ -23,6 +23,7 @@ class Paypal{
 		$valorItemArray = explode(",", $datos["valorItemArray"]);
 		$idProductos = str_replace(",","-", $datos["idProductoArray"]);
 		$cantidadProductos = str_replace(",","-", $datos["cantidadArray"]);
+		$pagoProductos = str_replace(",","-", $datos["valorItemArray"]);
 
 
 		#Seleccionamos el método de pago
@@ -71,7 +72,7 @@ class Paypal{
     	$url = Ruta::ctrRuta();
 
 		$redirectUrls = new RedirectUrls();
-		$redirectUrls->setReturnUrl("$url/index.php?ruta=finalizar-compra&paypal=true&productos=".$idProductos."&cantidad=".$cantidadProductos)
+		$redirectUrls->setReturnUrl("$url/index.php?ruta=finalizar-compra&paypal=true&productos=".$idProductos."&cantidad=".$cantidadProductos."&pago=".$pagoProductos)
    				     ->setCancelUrl("$url/carrito-de-compras");
 
    		#Agregamos todas las características del pago
@@ -81,10 +82,12 @@ class Paypal{
 			    ->setRedirectUrls($redirectUrls)
 			    ->setTransactions(array($transaction));
 
+		
+
 		#Tratar de ejcutar un proceso y si falla ejecutar una rutina de error
 		try {
 		    // traemos las credenciales $apiContext
-		    $payment->create($apiContext);   
+		    $payment->create($apiContext);
 		   
 		}catch(PayPal\Exception\PayPalConnectionException $ex){
 
