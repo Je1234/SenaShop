@@ -7,7 +7,7 @@ GLOBAL
 	padding:0px;
 	list-style: none;
 	text-decoration: none;
-	font-family: 'Ubuntu', sans-serif;
+	font-family: 'Ubunt', sans-serif;
 }
 
 ul, ol{
@@ -30,11 +30,6 @@ a:visited, a:link, a:focus, a:hover, a:active{
 .backColor, .backColor a{
 	background:#47bac1;
 	color:white;
-}
-
-.backColorOut, .backColorOut a{
-	background:#fff;
-	color:black;
 }
 
 .fondoBreadcrumb{
@@ -100,16 +95,16 @@ REDES SOCIALES
 
 /*GOOGLE PLUS*/
 
-.google-plusColor{
+.googleColor{
 	color:white;
 	background:#d71617;
 }
 
-.google-plusBlanco{
+.googleBlanco{
 	color:white;
 }
 
-.google-plusNegro{
+.googleNegro{
 	color:black;
 }
 

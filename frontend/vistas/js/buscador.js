@@ -38,6 +38,9 @@ $("#buscador input").change(function(){
 			$("#buscador a").attr("href", "inicio");
 		}
 
+
+
+
 	}
 
 })

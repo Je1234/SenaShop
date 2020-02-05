@@ -14,8 +14,7 @@ class ControladorUsuarios{
 			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["regEmail"]) &&
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["regPassword"])){
 
-			   	$encriptar = crypt($_POST["regPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$
-			   		$2a$07$asxx54ahjppf45sd87a5auxq/SS293XhTEeizKWMnfhnpfay0AALe');
+			   	$encriptar = crypt($_POST["regPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
 			   	$encriptarEmail = md5($_POST["regEmail"]);
 
@@ -32,16 +31,6 @@ class ControladorUsuarios{
 				$respuesta = ModeloUsuarios::mdlRegistroUsuario($tabla, $datos);
 
 				if($respuesta == "ok"){
-
-					/*=============================================
-					ACTUALIZAR NOTIFICACIONES NUEVOS USUARIOS
-					=============================================*/
-
-					$traerNotificaciones = ControladorNotificaciones::ctrMostrarNotificaciones();
-
-					$nuevoUsuario = $traerNotificaciones["nuevosUsuarios"] + 1;
-
-					ModeloNotificaciones::mdlActualizarNotificaciones("notificaciones", "nuevosUsuarios", $nuevoUsuario);
 
 					/*=============================================
 					VERIFICACIÓN CORREO ELECTRÓNICO
@@ -69,7 +58,7 @@ class ControladorUsuarios{
 						
 						<center>
 							
-							<img style="padding:20px; width:10%" src="http://www.tutorialesatualcance.com/tienda/logo.png">
+							<img style="padding:20px; width:10%" src="http://tutorialesatualcance.com/tienda/logo.png">
 
 						</center>
 
@@ -77,7 +66,7 @@ class ControladorUsuarios{
 						
 							<center>
 							
-							<img style="padding:20px; width:15%" src="http://www.tutorialesatualcance.com/tienda/icon-email.png">
+							<img style="padding:20px; width:15%" src="http://tutorialesatualcance.com/tienda/icon-email.png">
 
 							<h3 style="font-weight:100; color:#999">VERIFIQUE SU DIRECCIÓN DE CORREO ELECTRÓNICO</h3>
 
@@ -392,7 +381,7 @@ class ControladorUsuarios{
 	
 								<center>
 									
-									<img style="padding:20px; width:10%" src="http://www.tutorialesatualcance.com/tienda/logo.png">
+									<img style="padding:20px; width:10%" src="http://tutorialesatualcance.com/tienda/logo.png">
 
 								</center>
 
@@ -400,7 +389,7 @@ class ControladorUsuarios{
 								
 									<center>
 									
-									<img style="padding:20px; width:15%" src="http://www.tutorialesatualcance.com/tienda/icon-pass.png">
+									<img style="padding:20px; width:15%" src="http://tutorialesatualcance.com/tienda/icon-pass.png">
 
 									<h3 style="font-weight:100; color:#999">SOLICITUD DE NUEVA CONTRASEÑA</h3>
 
@@ -563,8 +552,6 @@ class ControladorUsuarios{
 
 				$emailRepetido = false;
 
-				return;
-
 			}
 
 			$emailRepetido = true;
@@ -572,16 +559,6 @@ class ControladorUsuarios{
 		}else{
 
 			$respuesta1 = ModeloUsuarios::mdlRegistroUsuario($tabla, $datos);
-
-			/*=============================================
-			ACTUALIZAR NOTIFICACIONES NUEVOS USUARIOS
-			=============================================*/
-
-			$traerNotificaciones = ControladorNotificaciones::ctrMostrarNotificaciones();
-
-			$nuevoUsuario = $traerNotificaciones["nuevosUsuarios"] + 1;
-
-			ModeloNotificaciones::mdlActualizarNotificaciones("notificaciones", "nuevosUsuarios", $nuevoUsuario);
 
 		}
 
@@ -765,7 +742,6 @@ class ControladorUsuarios{
 		}
 
 	}
-
 
 	/*=============================================
 	MOSTRAR COMPRAS
@@ -980,143 +956,6 @@ class ControladorUsuarios{
 					  </script>';
 
 		    }
-
-		}
-
-	}
-
-	/*=============================================
-	FORMULARIO CONTACTENOS
-	=============================================*/
-
-	public function ctrFormularioContactenos(){
-
-		if(isset($_POST['mensajeContactenos'])){
-
-			if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nombreContactenos"]) &&
-			preg_match('/^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["mensajeContactenos"]) &&
-			preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["emailContactenos"])){
-
-				/*=============================================
-				ENVÍO CORREO ELECTRÓNICO
-				=============================================*/
-
-					date_default_timezone_set("America/Bogota");
-
-					$url = Ruta::ctrRuta();	
-
-					$mail = new PHPMailer;
-
-					$mail->CharSet = 'UTF-8';
-
-					$mail->isMail();
-
-					$mail->setFrom('cursos@tutorialesatualcance.com', 'Tutoriales a tu Alcance');
-
-					$mail->addReplyTo('cursos@tutorialesatualcance.com', 'Tutoriales a tu Alcance');
-
-					$mail->Subject = "Ha recibido una consulta";
-
-					$mail->addAddress("contacto@tiendaenlinea.com");
-
-					$mail->msgHTML('
-
-						<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
-
-						<center><img style="padding:20px; width:10%" src="http://www.tutorialesatualcance.com/tienda/logo.png"></center>
-
-						<div style="position:relative; margin:auto; width:600px; background:white; padding-bottom:20px">
-
-							<center>
-
-							<img style="padding-top:20px; width:15%" src="http://www.tutorialesatualcance.com/tienda/icon-email.png">
-
-
-							<h3 style="font-weight:100; color:#999;">HA RECIBIDO UNA CONSULTA</h3>
-
-							<hr style="width:80%; border:1px solid #ccc">
-
-							<h4 style="font-weight:100; color:#999; padding:0px 20px; text-transform:uppercase">'.$_POST["nombreContactenos"].'</h4>
-
-							<h4 style="font-weight:100; color:#999; padding:0px 20px;">De: '.$_POST["emailContactenos"].'</h4>
-
-							<h4 style="font-weight:100; color:#999; padding:0px 20px">'.$_POST["mensajeContactenos"].'</h4>
-
-							<hr style="width:80%; border:1px solid #ccc">
-
-							</center>
-
-						</div>
-
-					</div>');
-
-					$envio = $mail->Send();
-
-					if(!$envio){
-
-						echo '<script> 
-
-							swal({
-								  title: "¡ERROR!",
-								  text: "¡Ha ocurrido un problema enviando el mensaje!",
-								  type:"error",
-								  confirmButtonText: "Cerrar",
-								  closeOnConfirm: false
-								},
-
-								function(isConfirm){
-
-									if(isConfirm){
-										history.back();
-									}
-							});
-
-						</script>';
-
-					}else{
-
-						echo '<script> 
-
-							swal({
-							  title: "¡OK!",
-							  text: "¡Su mensaje ha sido enviado, muy pronto le responderemos!",
-							  type: "success",
-							  confirmButtonText: "Cerrar",
-							  closeOnConfirm: false
-							},
-
-							function(isConfirm){
-									 if (isConfirm) {	  
-											history.back();
-										}
-							});
-
-						</script>';
-
-					}
-
-			}else{
-
-				echo'<script>
-
-					swal({
-						  title: "¡ERROR!",
-						  text: "¡Problemas al enviar el mensaje, revise que no tenga caracteres especiales!",
-						  type: "error",
-						  confirmButtonText: "Cerrar",
-						  closeOnConfirm: false
-					},
-
-					function(isConfirm){
-							 if (isConfirm) {	   
-							   	window.location =  history.back();
-							  } 
-					});
-
-					</script>';
-
-
-			}
 
 		}
 

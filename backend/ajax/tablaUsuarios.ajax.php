@@ -29,7 +29,6 @@ class TablaUsuarios{
 
 	    }
 
-
  		$datosJson = '{
 		 
 	 	"data": [ ';

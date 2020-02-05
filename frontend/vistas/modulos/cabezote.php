@@ -103,7 +103,7 @@ TOP
 			SOCIAL
 			======================================-->
 
-			<div class="col-md-9 col-sm-8 col-xs-12 social">
+			<div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 social">
 				
 				<ul>	
 
@@ -115,15 +115,11 @@ TOP
 
 					foreach ($jsonRedesSociales as $key => $value) {
 
-						if($value["activo"] != 0){
-
-							echo '<li>
-									<a href="'.$value["url"].'" target="_blank">
-										<i class="fa '.$value["red"].' '.$value["estilo"].' redSocial"></i>
-									</a>
-								</li>';
-
-						}
+						echo '<li>
+								<a href="'.$value["url"].'" target="_blank">
+									<i class="fa '.$value["red"].' redSocial '.$value["estilo"].'" aria-hidden="true"></i>
+								</a>
+							</li>';
 					}
 
 					?>
@@ -136,7 +132,7 @@ TOP
 			REGISTRO
 			======================================-->
 
-			<div class="col-md-3 col-sm-4 col-xs-12 registro">
+			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 registro">
 				
 				<ul>
 
@@ -238,7 +234,7 @@ HEADER
 			LOGOTIPO
 			======================================-->
 			
-			<div class="col-md-3 col-sm-2 col-xs-12" id="logotipo">
+			<div class="col-lg-3 col-md-3 col-sm-2 col-xs-12" id="logotipo">
 				
 				<a href="<?php echo $url; ?>">
 						
@@ -252,13 +248,13 @@ HEADER
 			BLOQUE CATEGORÍAS Y BUSCADOR
 			======================================-->
 
-			<div class="col-md-6 col-sm-8 col-xs-12">
+			<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
 					
 				<!--=====================================
 				BOTÓN CATEGORÍAS
 				======================================-->
 
-				<div class="col-md-4 col-sm-4 col-xs-12 backColor" id="btnCategorias">
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 backColor" id="btnCategorias">
 					
 					<p>CATEGORÍAS
 					
@@ -274,9 +270,9 @@ HEADER
 				BUSCADOR
 				======================================-->
 				
-				<div class="input-group col-sm-8 col-xs-12" id="buscador">
+				<div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-12" id="buscador">
 					
-					<input type="search" name="buscar" class="form-control input-lg" placeholder="Buscar...">	
+					<input type="search" name="buscar" class="form-control" placeholder="Buscar...">	
 
 					<span class="input-group-btn">
 						
@@ -300,7 +296,7 @@ HEADER
 			CARRITO DE COMPRAS
 			======================================-->
 
-			<div class="col-md-3 col-sm-2 col-xs-12" id="carrito">
+			<div class="col-lg-3 col-md-3 col-sm-2 col-xs-12" id="carrito">
 				
 				<a href="<?php echo $url;?>carrito-de-compras">
 
@@ -333,38 +329,30 @@ HEADER
 
 				foreach ($categorias as $key => $value) {
 
-					if($value["estado"] != 0){
+					echo '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+							
+							<h4>
+								<a href="'.$url.$value["ruta"].'" class="pixelCategorias">'.$value["categoria"].'</a>
+							</h4>
+							
+							<hr>
 
-						echo '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
-								
-								<h4>
-									<a href="'.$url.$value["ruta"].'" class="pixelCategorias" titulo="'.$value["categoria"].'">'.$value["categoria"].'</a>
-								</h4>
-								
-								<hr>
+							<ul>';
 
-								<ul>';
+							$item = "id_categoria";
 
-								$item = "id_categoria";
+							$valor = $value["id"];
 
-								$valor = $value["id"];
-
-								$subcategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
-								
-								foreach ($subcategorias as $key => $value) {
-
-									if($value["estado"] != 0){
-										
-										echo '<li><a href="'.$url.$value["ruta"].'" class="pixelSubCategorias" titulo="'.$value["subcategoria"].'">'.$value["subcategoria"].'</a></li>';
-
-									}
-								}	
+							$subcategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
+							
+							foreach ($subcategorias as $key => $value) {
 									
-								echo '</ul>
+									echo '<li><a href="'.$url.$value["ruta"].'" class="pixelSubCategorias">'.$value["subcategoria"].'</a></li>';
+								}	
+								
+							echo '</ul>
 
-							</div>';
-
-					}
+						</div>';
 				}
 
 			?>	
@@ -435,7 +423,7 @@ VENTANA MODAL PARA EL REGISTRO
 						
 						</span>
 
-						<input type="text" class="form-control input-lg text-uppercase" id="regUsuario" name="regUsuario" placeholder="Nombre Completo" required>
+						<input type="text" class="form-control text-uppercase" id="regUsuario" name="regUsuario" placeholder="Nombre Completo" required>
 
 					</div>
 
@@ -451,7 +439,7 @@ VENTANA MODAL PARA EL REGISTRO
 						
 						</span>
 
-						<input type="email" class="form-control input-lg" id="regEmail" name="regEmail" placeholder="Correo Electrónico" required>
+						<input type="email" class="form-control" id="regEmail" name="regEmail" placeholder="Correo Electrónico" required>
 
 					</div>
 
@@ -467,7 +455,7 @@ VENTANA MODAL PARA EL REGISTRO
 						
 						</span>
 
-						<input type="password" class="form-control input-lg" id="regPassword" name="regPassword" placeholder="Contraseña" required>
+						<input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="Contraseña" required>
 
 					</div>
 
@@ -581,7 +569,7 @@ VENTANA MODAL PARA EL INGRESO
 						
 						</span>
 
-						<input type="email" class="form-control input-lg" id="ingEmail" name="ingEmail" placeholder="Correo Electrónico" required>
+						<input type="email" class="form-control" id="ingEmail" name="ingEmail" placeholder="Correo Electrónico" required>
 
 					</div>
 
@@ -597,7 +585,7 @@ VENTANA MODAL PARA EL INGRESO
 						
 						</span>
 
-						<input type="password" class="form-control input-lg" id="ingPassword" name="ingPassword" placeholder="Contraseña" required>
+						<input type="password" class="form-control" id="ingPassword" name="ingPassword" placeholder="Contraseña" required>
 
 					</div>
 
@@ -669,7 +657,7 @@ VENTANA MODAL PARA OLVIDO DE CONTRASEÑA
 						
 						</span>
 					
-						<input type="email" class="form-control input-lg" id="passEmail" name="passEmail" placeholder="Correo Electrónico" required>
+						<input type="email" class="form-control" id="passEmail" name="passEmail" placeholder="Correo Electrónico" required>
 
 					</div>
 

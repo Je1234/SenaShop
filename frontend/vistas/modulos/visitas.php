@@ -7,9 +7,7 @@ CREADOR DE IP
 
 //https://www.browserling.com/tools/random-ip
 
-//$ip = $_SERVER['REMOTE_ADDR'];
-
-$ip = "163.172.160.190";
+$ip = $_SERVER['REMOTE_ADDR'];
 
 //http://www.geoplugin.net/
 

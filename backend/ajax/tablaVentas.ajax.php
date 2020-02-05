@@ -29,7 +29,7 @@ class TablaVentas{
 
     }
 
-    $datosJson = '{
+  	$datosJson = '{
 		 
 	 "data": [ ';
 

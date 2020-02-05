@@ -17,8 +17,8 @@ class TablaCategorias{
  	$item = null;
  	$valor = null;
 
- 	$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
- 		
+ 	$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);	
+
  	if(count($categorias) == 0){
 
       $datosJson = '{ "data":[]}';
@@ -27,7 +27,7 @@ class TablaCategorias{
 
       return;
 
-    }	
+    }
 
  	$datosJson = '{
 		 

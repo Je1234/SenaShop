@@ -6,7 +6,7 @@ class ControladorVisitas{
 	MOSTRAR TOTAL VISITAS
 	=============================================*/
 
-	public function ctrMostrarTotalVisitas(){
+	static public function ctrMostrarTotalVisitas(){
 
 		$tabla = "visitaspaises";
 

@@ -38,7 +38,9 @@ class AjaxProductos{
 
 		echo json_encode($respuesta);
 	}
-		
+	
+
+	
 
 }
 

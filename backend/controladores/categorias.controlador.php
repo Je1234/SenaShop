@@ -478,6 +478,7 @@ class ControladorCategorias{
 
 				}
 
+				
 				ModeloCabeceras::mdlEditarCabecera("cabeceras", $datos);
 
 				$respuesta = ModeloCategorias::mdlEditarCategoria("categorias", $datos);

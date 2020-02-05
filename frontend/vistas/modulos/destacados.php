@@ -10,23 +10,30 @@ $ruta = "sin-categoria";
 
 $banner = ControladorProductos::ctrMostrarBanner($ruta);
 
+$titulo1 = json_decode($banner["titulo1"],true);
+$titulo2 = json_decode($banner["titulo2"],true);
+$titulo3 = json_decode($banner["titulo3"],true);
+
 if($banner != null){
 
-	if($banner["estado"] != 0){
+echo '<figure class="banner">
 
-		echo '<figure class="banner">
+		<img src="'.$servidor.$banner["img"].'" class="img-responsive" width="100%">	
 
-				<img src="'.$servidor.$banner["img"].'" class="img-responsive" width="100%">	
+		<div class="textoBanner '.$banner["estilo"].'">
+			
+			<h1 style="color:'.$titulo1["color"].'">'.$titulo1["texto"].'</h1>
 
-			  </figure>';
+			<h2 style="color:'.$titulo2["color"].'"><strong>'.$titulo2["texto"].'</strong></h2>
 
-	}
+			<h3 style="color:'.$titulo3["color"].'">'.$titulo3["texto"].'</h3>
+
+		</div>
+
+	</figure>';
 
 }
 
-/*=============================================
-PRODUCTOS DESTACADOS
-=============================================*/
 
 $titulosModulos = array("ARTÍCULOS GRATUITOS", "LO MÁS VENDIDO", "LO MÁS VISTO");
 $rutaModulos = array("articulos-gratis","lo-mas-vendido","lo-mas-visto");
@@ -48,8 +55,8 @@ $gratis = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $ba
 if($titulosModulos[1] == "LO MÁS VENDIDO"){
 
 $ordenar = "ventas";
-$item = "estado";
-$valor = 1;
+$item = null;
+$valor = null;
 $modo = "DESC";
 
 $ventas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
@@ -59,8 +66,8 @@ $ventas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $ba
 if($titulosModulos[2] == "LO MÁS VISTO"){
 
 $ordenar = "vistas";
-$item = "estado";
-$valor = 1;
+$item = null;
+$valor = null;
 $modo = "DESC";
 
 $vistas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
@@ -147,18 +154,14 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 				<ul class="grid'.$i.'">';
 
 				foreach ($modulos[$i] as $key => $value) {
-
-					if($value["estado"] != 0){
 					
 					echo '<li class="col-md-3 col-sm-6 col-xs-12">
 
 							<figure>
 								
-								<a href="'.$value["ruta"].'" class="pixelProducto" >
+								<a href="'.$value["ruta"].'" class="pixelProducto">
 									
-									<center>
-									<img src="'.$servidor.$value["portada"].'" class="img-responsive" width="100%">
-									</center>
+									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
 
 								</a>
 
@@ -174,17 +177,13 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 
-										$fecha = date('Y-m-d');
-										$fechaActual = strtotime('-30 day', strtotime($fecha));
-										$fechaNueva = date('Y-m-d', $fechaActual);
-
-										if($fechaNueva < $value["fecha"]){
+										if($value["nuevo"] != 0){
 
 											echo '<span class="label label-warning fontSize">Nuevo</span> ';
 
 										}
 
-										if($value["oferta"] != 0 && $value["precio"] != 0){
+										if($value["oferta"] != 0){
 
 											echo '<span class="label label-warning fontSize">'.$value["descuentoOferta"].'% off</span>';
 
@@ -275,8 +274,6 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 							</div>
 
 						</li>';
-
-					}
 				}
 
 				echo '</ul>
@@ -284,8 +281,6 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 				<ul class="list'.$i.'" style="display:none">';
 
 				foreach ($modulos[$i] as $key => $value) {
-
-					if($value["estado"] != 0){
 
 					echo '<li class="col-xs-12">
 					  
@@ -313,17 +308,13 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 										
 										'.$value["titulo"].'<br>';
 
-										$fecha = date('Y-m-d');
-										$fechaActual = strtotime('-30 day', strtotime($fecha));
-										$fechaNueva = date('Y-m-d', $fechaActual);
-
-										if($fechaNueva < $value["fecha"]){
+										if($value["nuevo"] != 0){
 
 											echo '<span class="label label-warning">Nuevo</span> ';
 
 										}
 
-										if($value["oferta"] != 0 && $value["precio"] != 0){
+										if($value["oferta"] != 0){
 
 											echo '<span class="label label-warning">'.$value["descuentoOferta"].'% off</span>';
 
@@ -412,8 +403,6 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 						<div class="col-xs-12"><hr></div>
 
 					</li>';
-
-					}
 
 				}
 

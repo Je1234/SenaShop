@@ -14,7 +14,6 @@ CARGAR LA TABLA DINÁMICA DE PRODUCTOS
 // })
 
 $('.tablaProductos').DataTable({
-
 	"ajax":"ajax/tablaProductos.ajax.php",
 	"deferRender": true,
 	"retrieve": true,
@@ -517,6 +516,7 @@ GUARDAR EL PRODUCTO
 var multimediaFisica = null;
 var multimediaVirtual = null;	
 
+
 $(".guardarProducto").click(function(){
 
 	/*=============================================
@@ -574,8 +574,8 @@ $(".guardarProducto").click(function(){
 
 							if((finalFor + 1) == arrayFiles.length){
 
-								agregarMiProducto(multimediaFisica);
-								finalFor = 0;
+								agregarMiProducto(multimediaFisica); 
+								finalFor = 0; 
 
 							}
 
@@ -604,11 +604,11 @@ $(".guardarProducto").click(function(){
 
  			  return;
 			
-			}
+			}	
 
-			agregarMiProducto(multimediaVirtual);		
+			agregarMiProducto(multimediaVirtual); 	
 
-	   	}
+	   	}	
 
 	}else{
 
@@ -622,6 +622,7 @@ $(".guardarProducto").click(function(){
 	}
 
 })
+
 
 function agregarMiProducto(imagen){
 
@@ -673,10 +674,11 @@ function agregarMiProducto(imagen){
 		datosProducto.append("pClavesProducto", pClavesProducto);
 		datosProducto.append("precio", precio);
 		datosProducto.append("peso", peso);
-		datosProducto.append("entrega", entrega);	
+		datosProducto.append("entrega", entrega);
 
 		datosProducto.append("multimedia", imagen);
-		
+
+
 		datosProducto.append("fotoPortada", imagenPortada);
 		datosProducto.append("fotoPrincipal", imagenFotoPrincipal);
 		datosProducto.append("selActivarOferta", selActivarOferta);
@@ -715,6 +717,7 @@ function agregarMiProducto(imagen){
 				}
 
 		})
+
 
 }
 
@@ -910,7 +913,7 @@ $('.tablaProductos tbody').on("click", ".btnEditarProducto", function(){
 
 				$.ajax({
 
-						url:"ajax/subcategorias.ajax.php",
+						url:"ajax/subCategorias.ajax.php",
 						method: "POST",
 						data: datosSubCategoria,
 						cache: false,
@@ -927,7 +930,7 @@ $('.tablaProductos tbody').on("click", ".btnEditarProducto", function(){
 
 							$.ajax({
 
-								url:"ajax/subcategorias.ajax.php",
+								url:"ajax/subCategorias.ajax.php",
 								method: "POST",
 								data: datosCategoria,
 								cache: false,
@@ -1131,10 +1134,10 @@ $('.tablaProductos tbody').on("click", ".btnEditarProducto", function(){
 			=============================================*/	
 
 			var multimediaFisica = null;
-			var multimediaVirtual = null;	
+			var multimediaVirtual = null;
 
 			$(".guardarCambiosProducto").click(function(){
-
+			
 					/*=============================================
 					PREGUNTAMOS SI LOS CAMPOS OBLIGATORIOS ESTÁN LLENOS
 					=============================================*/
@@ -1197,16 +1200,15 @@ $('.tablaProductos tbody').on("click", ".btnEditarProducto", function(){
 												 return;
 											}
 
-
 											if((finalFor + 1) == arrayFiles.length){
 
-												editarMiProducto(multimediaFisica);
-												finalFor = 0;
+												agregarMiProducto(multimediaFisica); 
+												finalFor = 0; 
 
 											}
 
 											finalFor++;							
-								
+												
 										}
 
 									})
@@ -1237,9 +1239,9 @@ $('.tablaProductos tbody').on("click", ".btnEditarProducto", function(){
 								    });
 
 					 			  return;
-							}	
+							}
 
-							editarMiProducto(multimediaVirtual);	
+							agregarMiProducto(multimediaVirtual); 			
 							
 						}
 
@@ -1253,9 +1255,125 @@ $('.tablaProductos tbody').on("click", ".btnEditarProducto", function(){
 
 						return;
 
-					}					
+					}
 
 			})
+
+			function agregarMiProducto(imagen){
+
+
+				var idProducto = $("#modalEditarProducto .idProducto").val();
+				var tituloProducto = $("#modalEditarProducto .tituloProducto").val();
+				var rutaProducto = $("#modalEditarProducto .rutaProducto").val();
+				var seleccionarTipo = $("#modalEditarProducto .seleccionarTipo").val();
+					var seleccionarCategoria = $("#modalEditarProducto .seleccionarCategoria").val();
+				var seleccionarSubCategoria = $("#modalEditarProducto .seleccionarSubCategoria").val();
+				var descripcionProducto = $("#modalEditarProducto .descripcionProducto").val();
+				var pClavesProducto = $("#modalEditarProducto .pClavesProducto").val();
+				var precio = $("#modalEditarProducto .precio").val();
+				var peso = $("#modalEditarProducto .peso").val();
+				var entrega = $("#modalEditarProducto .entrega").val();
+				var selActivarOferta = $("#modalEditarProducto .selActivarOferta").val();
+				var precioOferta = $("#modalEditarProducto .precioOferta").val();
+				var descuentoOferta = $("#modalEditarProducto .descuentoOferta").val();
+				var finOferta = $("#modalEditarProducto .finOferta").val();
+
+			  	if(seleccionarTipo == "virtual"){
+
+					var detalles = {"Clases": $("#modalEditarProducto .detalleClases").val(),
+				       				"Tiempo": $("#modalEditarProducto .detalleTiempo").val(),
+				       				"Nivel": $("#modalEditarProducto .detalleNivel").val(),
+				       				"Acceso": $("#modalEditarProducto .detalleAcceso").val(),
+				       				"Dispositivo": $("#modalEditarProducto .detalleDispositivo").val(),
+				   					"Certificado": $("#modalEditarProducto .detalleCertificado").val()};
+				}else{
+
+					var detalles = {"Talla": $("#modalEditarProducto .detalleTalla").tagsinput('items'),							
+					       			"Color": $("#modalEditarProducto .detalleColor").tagsinput('items'),
+					       			"Marca": $("#modalEditarProducto .detalleMarca").tagsinput('items')};
+
+				}
+
+				var detallesString = JSON.stringify(detalles);
+
+				
+				var antiguaFotoPortada = $("#modalEditarProducto .antiguaFotoPortada").val();
+				var antiguaFotoPrincipal = $("#modalEditarProducto .antiguaFotoPrincipal").val();
+				var antiguaFotoOferta = $("#modalEditarProducto .antiguaFotoOferta").val();
+				var idCabecera = $("#modalEditarProducto .idCabecera").val();
+
+
+				var datosProducto = new FormData();
+				datosProducto.append("id", idProducto);
+				datosProducto.append("editarProducto", tituloProducto);
+				datosProducto.append("rutaProducto", rutaProducto);
+				datosProducto.append("seleccionarTipo", seleccionarTipo);	
+				datosProducto.append("detalles", detallesString);	
+				datosProducto.append("seleccionarCategoria", seleccionarCategoria);
+				datosProducto.append("seleccionarSubCategoria", seleccionarSubCategoria);
+				datosProducto.append("descripcionProducto", descripcionProducto);
+				datosProducto.append("pClavesProducto", pClavesProducto);
+				datosProducto.append("precio", precio);
+				datosProducto.append("peso", peso);
+				datosProducto.append("entrega", entrega);
+
+				if(multimediaFisica == null && multimediaVirtual == null){
+
+					multimediaFisica = localStorage.getItem("multimediaFisica");
+					datosProducto.append("multimedia", multimediaFisica);
+
+
+				}else{
+
+					datosProducto.append("multimedia", imagen);
+				}	
+
+				datosProducto.append("fotoPortada", imagenPortada);
+				datosProducto.append("fotoPrincipal", imagenFotoPrincipal);
+				datosProducto.append("selActivarOferta", selActivarOferta);
+				datosProducto.append("precioOferta", precioOferta);
+				datosProducto.append("descuentoOferta", descuentoOferta);
+				datosProducto.append("finOferta", finOferta);
+				datosProducto.append("fotoOferta", imagenOferta);
+				datosProducto.append("antiguaFotoPortada", antiguaFotoPortada);
+				datosProducto.append("antiguaFotoPrincipal", antiguaFotoPrincipal);
+				datosProducto.append("antiguaFotoOferta", antiguaFotoOferta);
+				datosProducto.append("idCabecera", idCabecera);
+
+				$.ajax({
+						url:"ajax/productos.ajax.php",
+						method: "POST",
+						data: datosProducto,
+						cache: false,
+						contentType: false,
+						processData: false,
+						success: function(respuesta){
+												
+							
+							if(respuesta == "ok"){
+
+								swal({
+								  type: "success",
+								  title: "El producto ha sido cambiado correctamente",
+								  showConfirmButton: true,
+								  confirmButtonText: "Cerrar"
+								  }).then(function(result){
+									if (result.value) {
+
+									localStorage.removeItem("multimediaFisica");
+									localStorage.clear();
+									window.location = "productos";
+
+									}
+								})
+							}
+
+						}
+
+				})
+
+
+			}
 					
 		}
 
@@ -1263,118 +1381,6 @@ $('.tablaProductos tbody').on("click", ".btnEditarProducto", function(){
 
 })
 
-function editarMiProducto(imagen){
-
-	var idProducto = $("#modalEditarProducto .idProducto").val();
-	var tituloProducto = $("#modalEditarProducto .tituloProducto").val();
-	var rutaProducto = $("#modalEditarProducto .rutaProducto").val();
-	var seleccionarTipo = $("#modalEditarProducto .seleccionarTipo").val();
-		var seleccionarCategoria = $("#modalEditarProducto .seleccionarCategoria").val();
-	var seleccionarSubCategoria = $("#modalEditarProducto .seleccionarSubCategoria").val();
-	var descripcionProducto = $("#modalEditarProducto .descripcionProducto").val();
-	var pClavesProducto = $("#modalEditarProducto .pClavesProducto").val();
-	var precio = $("#modalEditarProducto .precio").val();
-	var peso = $("#modalEditarProducto .peso").val();
-	var entrega = $("#modalEditarProducto .entrega").val();
-	var selActivarOferta = $("#modalEditarProducto .selActivarOferta").val();
-	var precioOferta = $("#modalEditarProducto .precioOferta").val();
-	var descuentoOferta = $("#modalEditarProducto .descuentoOferta").val();
-	var finOferta = $("#modalEditarProducto .finOferta").val();
-
-  	if(seleccionarTipo == "virtual"){
-
-		var detalles = {"Clases": $("#modalEditarProducto .detalleClases").val(),
-	       				"Tiempo": $("#modalEditarProducto .detalleTiempo").val(),
-	       				"Nivel": $("#modalEditarProducto .detalleNivel").val(),
-	       				"Acceso": $("#modalEditarProducto .detalleAcceso").val(),
-	       				"Dispositivo": $("#modalEditarProducto .detalleDispositivo").val(),
-	   					"Certificado": $("#modalEditarProducto .detalleCertificado").val()};
-	}else{
-
-		var detalles = {"Talla": $("#modalEditarProducto .detalleTalla").tagsinput('items'),							
-		       			"Color": $("#modalEditarProducto .detalleColor").tagsinput('items'),
-		       			"Marca": $("#modalEditarProducto .detalleMarca").tagsinput('items')};
-
-	}
-
-	var detallesString = JSON.stringify(detalles);
-
-	
-	var antiguaFotoPortada = $("#modalEditarProducto .antiguaFotoPortada").val();
-	var antiguaFotoPrincipal = $("#modalEditarProducto .antiguaFotoPrincipal").val();
-	var antiguaFotoOferta = $("#modalEditarProducto .antiguaFotoOferta").val();
-	var idCabecera = $("#modalEditarProducto .idCabecera").val();
-
-
-	var datosProducto = new FormData();
-	datosProducto.append("id", idProducto);
-	datosProducto.append("editarProducto", tituloProducto);
-	datosProducto.append("rutaProducto", rutaProducto);
-	datosProducto.append("seleccionarTipo", seleccionarTipo);	
-	datosProducto.append("detalles", detallesString);	
-	datosProducto.append("seleccionarCategoria", seleccionarCategoria);
-	datosProducto.append("seleccionarSubCategoria", seleccionarSubCategoria);
-	datosProducto.append("descripcionProducto", descripcionProducto);
-	datosProducto.append("pClavesProducto", pClavesProducto);
-	datosProducto.append("precio", precio);
-	datosProducto.append("peso", peso);
-	datosProducto.append("entrega", entrega);
-
-	if(imagen == null){
-
-		multimediaFisica = localStorage.getItem("multimediaFisica");
-		datosProducto.append("multimedia", multimediaFisica);
-
-	}else{
-
-		datosProducto.append("multimedia", imagen);
-	}	
-
-	datosProducto.append("fotoPortada", imagenPortada);
-	datosProducto.append("fotoPrincipal", imagenFotoPrincipal);
-	datosProducto.append("selActivarOferta", selActivarOferta);
-	datosProducto.append("precioOferta", precioOferta);
-	datosProducto.append("descuentoOferta", descuentoOferta);
-	datosProducto.append("finOferta", finOferta);
-	datosProducto.append("fotoOferta", imagenOferta);
-	datosProducto.append("antiguaFotoPortada", antiguaFotoPortada);
-	datosProducto.append("antiguaFotoPrincipal", antiguaFotoPrincipal);
-	datosProducto.append("antiguaFotoOferta", antiguaFotoOferta);
-	datosProducto.append("idCabecera", idCabecera);
-
-	$.ajax({
-			url:"ajax/productos.ajax.php",
-			method: "POST",
-			data: datosProducto,
-			cache: false,
-			contentType: false,
-			processData: false,
-			success: function(respuesta){
-									
-				
-				if(respuesta == "ok"){
-
-					swal({
-					  type: "success",
-					  title: "El producto ha sido cambiado correctamente",
-					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar"
-					  }).then(function(result){
-						if (result.value) {
-
-						localStorage.removeItem("multimediaFisica");
-						localStorage.clear();
-						window.location = "productos";
-
-						}
-					})
-				}
-
-			}
-
-	})
-	
-}
 
 /*=============================================
 ELIMINAR PRODUCTO

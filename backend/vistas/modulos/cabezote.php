@@ -2,7 +2,7 @@
  <header class="main-header">
 
 	<!-- logo -->
-    <a href="inicio" class="logo">
+    <a href="#" class="logo">
       
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><img src="vistas/img/plantilla/icono.png" class="img-responsive" style="padding:10px; filter:contrast(200%);"></span>

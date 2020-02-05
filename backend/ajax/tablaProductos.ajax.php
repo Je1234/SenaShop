@@ -40,7 +40,7 @@ class TablaProductos{
   		{	
   			"data":[';
 
-	 	for($i = 0; $i < count($productos)-1; $i++){
+	 	for($i = 0; $i < count($productos); $i++){
 
 			/*=============================================
   			TRAER LAS CATEGORÍAS
