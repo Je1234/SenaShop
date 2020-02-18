@@ -12,7 +12,7 @@
 
 	<meta name="keyword" content="Lorem ipsum, dolor sit amet, consectetur, adipisicing, elit, Quisquam, accusantium, enim, esse">
 
-	<title>Tienda Virtual</title>
+	<title>SenaShop</title>
 
 	<?php
 
