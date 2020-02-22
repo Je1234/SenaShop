@@ -129,7 +129,7 @@ if(localStorage.getItem("listaProductos") != null){
 							'<br>'+
 
 							'<p class="subTotal'+index+' subtotales">'+
-								
+							
 								'<strong>USD $<span>'+item.precio+'</span></strong>'+
 
 							'</p>'+
@@ -170,7 +170,8 @@ if(localStorage.getItem("listaProductos") != null){
 					cestaCarrito(precioCarritoCompra.length);
 
 				}
-					
+
+				
 
 			}
 		

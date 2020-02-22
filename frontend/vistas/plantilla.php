@@ -6,14 +6,6 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<meta name="title" content="Tienda Virtual">
-
-	<meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam accusantium enim esse eos officiis sit officia">
-
-	<meta name="keyword" content="Lorem ipsum, dolor sit amet, consectetur, adipisicing, elit, Quisquam, accusantium, enim, esse">
-
-	<title>SenaShop</title>
-
 	<?php
 
 		session_start();
@@ -30,7 +22,79 @@
 		
 		$url = Ruta::ctrRuta();
 
+		/*=============================================
+		MARCADO DE CABECERA
+		=============================================*/
+
+		$rutas = array();
+
+		if(isset($_GET["ruta"])){
+
+			$rutas = explode("/", $_GET["ruta"]);
+
+			$ruta = $rutas[0];
+
+		}else{
+
+			$ruta = "inicio";
+
+		}
+
+		$cabeceras = ControladorPlantilla::ctrTraerCabeceras($ruta);
+		
+		if(!$cabeceras["ruta"]){
+
+			$ruta = "inicio";
+
+			$cabeceras = ControladorPlantilla::ctrTraerCabeceras($ruta);
+
+		}
+
 	?>
+
+	<!--=====================================
+	Marcado HTML5
+	======================================-->
+
+	<meta name="title" content="<?php echo  $cabeceras['titulo']; ?>">
+
+	<meta name="description" content="<?php echo  $cabeceras['descripcion']; ?>">
+
+	<meta name="keyword" content="<?php echo  $cabeceras['palabrasClaves']; ?>">
+
+	<title><?php echo  $cabeceras['titulo']; ?></title>
+
+	<!--=====================================
+	Marcado de Open Graph FACEBOOK
+	======================================-->
+
+	<meta property="og:title"   content="<?php echo $cabeceras['titulo'];?>">
+	<meta property="og:url" content="<?php echo $url.$cabeceras['ruta'];?>">
+	<meta property="og:description" content="<?php echo $cabeceras['descripcion'];?>">
+	<meta property="og:image"  content="<?php echo $cabeceras['portada'];?>">
+	<meta property="og:type"  content="website">	
+	<meta property="og:site_name" content="Tu logo">
+	<meta property="og:locale" content="es_CO">
+
+	<!--=====================================
+	Marcado para DATOS ESTRUCTURADOS GOOGLE
+	======================================-->
+	
+	<meta itemprop="name" content="<?php echo $cabeceras['titulo'];?>">
+	<meta itemprop="url" content="<?php echo $url.$cabeceras['ruta'];?>">
+	<meta itemprop="description" content="<?php echo $cabeceras['descripcion'];?>">
+	<meta itemprop="image" content="<?php echo $cabeceras['portada'];?>">
+
+	<!--=====================================
+	Marcado de TWITTER
+	======================================-->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="<?php echo $cabeceras['titulo'];?>">
+	<meta name="twitter:url" content="<?php echo $url.$cabeceras['ruta'];?>">
+	<meta name="twitter:description" content="<?php echo $cabeceras['descripcion'];?>">
+	<meta name="twitter:image" content="<?php echo $cabeceras['portada'];?>">
+	<meta name="twitter:site" content="@tu-usuario">
+
 
 	<!--=====================================
 	PLUGINS DE CSS
@@ -43,6 +107,8 @@
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/flexslider.css">
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/sweetalert.css">
+
+	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/dscountdown.css">
 
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
@@ -66,6 +132,8 @@
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/carrito-de-compras.css">
 
+	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/ofertas.css">
+
 	<!--=====================================
 	PLUGINS DE JAVASCRIPT
 	======================================-->
@@ -83,6 +151,10 @@
 	<script src="<?php echo $url; ?>vistas/js/plugins/sweetalert.min.js"></script>
 
 	<script src="<?php echo $url; ?>vistas/js/plugins/md5-min.js"></script>
+
+	<script src="<?php echo $url; ?>vistas/js/plugins/dscountdown.min.js"></script>
+
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 </head>
 
@@ -163,9 +235,15 @@ if(isset($_GET["ruta"])){
 
 		include "modulos/infoproducto.php";
 
-	}else if($rutas[0] == "buscador" || $rutas[0] == "verificar" || $rutas[0] == "salir" || $rutas[0] == "perfil" || $rutas[0] == "carrito-de-compras" || $rutas[0] == "error" || $rutas[0] == "finalizar-compra" || $rutas[0] == "curso"){
+	}else if($rutas[0] == "buscador" || $rutas[0] == "verificar" || $rutas[0] == "salir" || $rutas[0] == "perfil" || $rutas[0] == "carrito-de-compras" || $rutas[0] == "error" || $rutas[0] == "finalizar-compra" || $rutas[0] == "curso" || $rutas[0] == "ofertas"){
 
 		include "modulos/".$rutas[0].".php";
+
+	}else if($rutas[0] == "inicio"){
+
+		include "modulos/slide.php";
+
+		include "modulos/destacados.php";
 
 	}else{
 
@@ -222,6 +300,41 @@ https://developers.facebook.com/
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
+
+  /*=============================================
+	COMPARTIR EN FACEBOOK
+	https://developers.facebook.com/docs/      
+	=============================================*/
+	
+	$(".btnFacebook").click(function(){
+
+		FB.ui({
+
+			method: 'share',
+			display: 'popup',
+			href: '<?php  echo $url.$cabeceras["ruta"];  ?>',
+		}, function(response){});
+
+	})
+
+	/*=============================================
+	COMPARTIR EN GOOGLE
+	https://developers.google.com/+/web/share/     
+	=============================================*/
+
+	$(".btnGoogle").click(function(){
+
+		window.open(
+
+			'https://plus.google.com/share?url=<?php  echo $url.$cabeceras["ruta"];  ?>',
+			'',
+			'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=400'
+		);
+
+		return false;
+
+	})
+
 </script>
 
 </body>
