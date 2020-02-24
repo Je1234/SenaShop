@@ -7,7 +7,7 @@ GLOBAL
 	padding:0px;
 	list-style: none;
 	text-decoration: none;
-	font-family: 'Ubuntu', sans-serif;
+	font-family: 'Ubunt', sans-serif;
 }
 
 ul, ol{
@@ -46,6 +46,7 @@ REDES SOCIALES
 	height:30px;
 	text-align: center;
 	line-height:30px;
+	
 }
 
 /*FACEBOOK*/
@@ -122,13 +123,17 @@ REDES SOCIALES
 
 .instagramNegro{
 	color:black;
+	border-radius: 77px 77px 77px 77px;
+-moz-border-radius: 77px 77px 77px 77px;
+-webkit-border-radius: 77px 77px 77px 77px;
+border: 0px solid #000000;
 }
 
 /*=============================================
 ERROR 404, VERIFICAR
 =============================================*/
 
-.error404. .verificar{
+.error404 .verificar{
 	color:#333;
 }
 
