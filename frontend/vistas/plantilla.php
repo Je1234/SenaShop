@@ -44,6 +44,8 @@
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/sweetalert.css">
 
+	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/dscountdown.css">
+
 	
 
 	<!--=====================================
@@ -64,6 +66,8 @@
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/carrito-de-compras.css">
 
+	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/ofertas.css">
+
 	<!--=====================================
 	PLUGINS DE JAVASCRIPT
 	======================================-->
@@ -81,6 +85,8 @@
 	<script src="<?php echo $url; ?>vistas/js/plugins/sweetalert.min.js"></script>
 
 	<script src="<?php echo $url; ?>vistas/js/plugins/md5-min.js"></script>
+
+	<script src="<?php echo $url; ?>vistas/js/plugins/dscountdown.min.js"></script>
 
 </head>
 
@@ -161,7 +167,7 @@ if(isset($_GET["ruta"])){
 
 		include "modulos/infoproducto.php";
 
-	}else if($rutas[0] == "buscador" || $rutas[0] == "verificar" || $rutas[0] == "salir" || $rutas[0] == "perfil" || $rutas[0] == "carrito-de-compras" || $rutas[0] == "error" || $rutas[0] == "finalizar-compra" || $rutas[0] == "curso"){
+	}else if($rutas[0] == "buscador" || $rutas[0] == "verificar" || $rutas[0] == "salir" || $rutas[0] == "perfil" || $rutas[0] == "carrito-de-compras" || $rutas[0] == "error" || $rutas[0] == "finalizar-compra" || $rutas[0] == "curso" || $rutas[0] == "ofertas"){
 
 		include "modulos/".$rutas[0].".php";
 

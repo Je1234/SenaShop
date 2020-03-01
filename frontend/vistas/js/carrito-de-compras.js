@@ -1254,4 +1254,99 @@ $(".agregarGratis").click(function(){
 	
 
 })
+/*=============================================
+/*=============================================
+/*=============================================
+/*=============================================
+/*=============================================
+BOTÓN PAGAR PAYPAL
+=============================================*/
 
+$(".agregarGratis").click(function(){
+
+	 var idProducto = $(this).attr("idProducto");
+	 var idUsuario = $(this).attr("idUsuario");
+	 var tipo = $(this).attr("tipo");
+	 var agregarGratis = false;
+	 
+/*=============================================
+VERIFICAR EL PRODUCTO ADQUIRIDO
+=============================================*/
+	var datos = new FormData();
+	
+	datos.append("idUsuario",idUsuario);
+	datos.append("idProducto",idProducto);
+
+	$.ajax({
+		url:rutaOculta+"ajax/carrito.ajax.php",
+		method:"POST",
+		data:"datos",
+		cache: false,
+		contentType: false,
+		processData: false,
+		success:function(respuesta){
+
+			if(respuesta != "false"){
+
+				swal({
+				title: "¡Usted ya adquirió este producto!",
+				text: "",
+				type: "warning",
+				showCancelButton: false,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Regresar",
+				closeOnConfirm: false
+			  })
+
+
+			}else{
+
+					if(tipo == "virtual"){
+	
+						agregarGratis = true;
+	
+					}else{
+	
+						var seleccionarDetalle = $(".seleccionarDetalle");
+	
+						for(var i = 0; i < seleccionarDetalle.length; i++){
+	
+							if($(seleccionarDetalle[i]).val() == ""){
+	
+									swal({
+										  title: "Debe seleccionar Talla y Color",
+										  text: "",
+										  type: "warning",
+										  showCancelButton: false,
+										  confirmButtonColor: "#DD6B55",
+										  confirmButtonText: "¡Seleccionar!",
+										  closeOnConfirm: false
+										})
+	
+							}else{
+	
+								titulo = titulo + "-" + $(seleccionarDetalle[i]).val();
+	
+								agregarGratis = true;
+	
+							}
+	
+						}		
+	
+					}
+					if(agregarGratis){
+
+						window.location = rutaOculta +"index.php?ruta=finalizar-compra&gratis=true&producto"+idProducto+"&titulo="+titulo;
+	
+					}
+				
+
+			}
+		}
+
+	})
+
+	
+
+
+})

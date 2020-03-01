@@ -604,19 +604,40 @@ INFOPRODUCTOS
 					if($infoproducto["precio"]==0){
 
 						echo '<div class="col-md-6 col-xs-12">';
+						
+						if (isset($_SESSION["validarSesion"]) && $_SESSION["validarSesion"] == "ok") {
+
+						
 
 							if($infoproducto["tipo"]=="virtual"){
 						
-								echo '<button class="btn btn-default btn-block btn-lg backColor">ACCEDER AHORA</button>';
+								echo '<button class="btn btn-default btn-block btn-lg backColor agregarGratis idProducto="'.infoProducto["id"].'" idUsuario="'.$_SESSION["id"].'" tipo="'.infoProducto["tipo"].'" ">ACCEDER AHORA</button>';
 
 							}else{
 
-								echo '<button class="btn btn-default btn-block btn-lg backColor">SOLICITAR AHORA</button>';
+								echo '<button class="btn btn-default btn-block btn-lg backColor agregarGratis idProducto="'.infoProducto["id"].'" idUsuario="'.$_SESSION["id"].'" tipo="'.infoProducto["tipo"].'" ">SOLICITAR AHORA</button>
+								 <br>
+								 
+								 <div class="col-xs-12 panel panel-info text-left">
+
+								 <strong>!Atencion¡</strong>
+
+								 El producto a solicitar es completamente gratuito y se enviara a su direccion registrada, solo se cobraran los cargos de envio
+
+								 </div>';
 
 							}
 
-							echo '</div>';
+						 }else{
+							 echo '<a href="#modalIngreso" data-toggle="modal">
+							
+							   <button class="btn btn-default btn-block btn-lg backColor">SOLICITAR AHORA</button>
 
+							  </a>';
+
+						 }
+							echo '</div>';
+						
 					}else{
 
 						if($infoproducto["tipo"]=="virtual"){
