@@ -73,7 +73,6 @@ class AjaxCarrito{
 		
 		echo json_encode($respuesta);
 		
-		
 	}
 
 }

@@ -47,5 +47,7 @@ class ControladorCarrito{
 		$respuesta = ModeloCarrito::mdlVerificarProducto($tabla,$datos);
 
 		return $respuesta;
+
+		
 	}
 }

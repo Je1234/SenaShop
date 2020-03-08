@@ -864,8 +864,9 @@ $("#cambiarDivisa").change(function(){
 	var divisa = $(this).val();
 
 	$.ajax({
-
-		url: "http://free.currencyconverterapi.com/api/v3/convert?q="+divisaBase+"_"+divisa+"&compact=y",
+		
+		url: "https://free.currconv.com/api/v7/convert?q="+divisaBase+"_"+divisa+"&compact=ultra&apiKey=a267f4d63d41a6155e29",
+		//url: "http://free.currencyconverterapi.com/api/v3/convert?q="+divisaBase+"_"+divisa+"&compact=y",
 		type:"GET",
 		cache: false,
 	    contentType: false,
@@ -873,10 +874,10 @@ $("#cambiarDivisa").change(function(){
 	    dataType:"jsonp",
 	    success:function(respuesta){
 	        	
-	    	var conversion = (respuesta["USD_"+divisa]["val"]).toFixed(2);
-
+	    	var conversion = (respuesta["USD_" + divisa]["val"]).toFixed(2);
+			
 	    	$(".cambioDivisa").html(divisa);
-	    	
+	    	console.log("respuesta",respuesta);
 	    	if(divisa == "USD"){
 
 	    		$(".valorSubtotal").html($(".valorSubtotal").attr("valor"))

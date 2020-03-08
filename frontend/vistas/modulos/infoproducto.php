@@ -611,11 +611,11 @@ INFOPRODUCTOS
 
 							if($infoproducto["tipo"]=="virtual"){
 						
-								echo '<button class="btn btn-default btn-block btn-lg backColor agregarGratis idProducto="'.infoProducto["id"].'" idUsuario="'.$_SESSION["id"].'" tipo="'.infoProducto["tipo"].'" ">ACCEDER AHORA</button>';
+								echo '<button class="btn btn-default btn-block btn-lg backColor agregarGratis idProducto="'.$infoproducto["id"].'" idUsuario="'.$_SESSION["id"].'" tipo="'.$infoproducto["tipo"].'" ">ACCEDER AHORA</button>';
 
 							}else{
 
-								echo '<button class="btn btn-default btn-block btn-lg backColor agregarGratis idProducto="'.infoProducto["id"].'" idUsuario="'.$_SESSION["id"].'" tipo="'.infoProducto["tipo"].'" ">SOLICITAR AHORA</button>
+								echo '<button class="btn btn-default btn-block btn-lg backColor agregarGratis idProducto="'.$infoproducto["id"].'" idUsuario="'.$_SESSION["id"].'" tipo="'.$infoproducto["tipo"].'" ">SOLICITAR AHORA</button>
 								 <br>
 								 
 								 <div class="col-xs-12 panel panel-info text-left">

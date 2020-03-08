@@ -215,7 +215,7 @@ else if(isset($_GET["gratis"]) && $_GET["gratis"] =="true"){
              
      
 
-     $respuesta= ContraladorCarrito::ctrNuevasCompras($datos);
+     $respuesta= ControladorCarrito::ctrNuevasCompras($datos);
 
      $ordenar = "id";
          $item = "id";

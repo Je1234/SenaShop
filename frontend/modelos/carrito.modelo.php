@@ -36,10 +36,11 @@ class ModeloCarrito{
 		$stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
 		$stmt->bindParam(":direccion", $datos["direccion"], PDO::PARAM_STR);
 		$stmt->bindParam(":pais", $datos["pais"], PDO::PARAM_STR);
-
+		
 		if($stmt->execute()){ 
 
 			return "ok"; 
+			
 
 		}else{ 
 
@@ -68,6 +69,6 @@ class ModeloCarrito{
 
 		$stmt -> close();
 
-		$tmt =null;
+		$stmt =null;
 	}
 }
