@@ -50,11 +50,11 @@ SLIDESHOW
 
 									echo '<a href="'.$value["url"].'">
 										
-										<button class="btn btn-default backColor text-uppercase">
+										
 
-										'.$value["boton"].' <span class="fa fa-chevron-right"></span>
+										'.$value["boton"].' 
 
-										</button>
+										
 
 									</a>';
 

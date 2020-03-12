@@ -865,7 +865,7 @@ $("#cambiarDivisa").change(function(){
 
 	$.ajax({
 		
-		url: "https://free.currconv.com/api/v7/convert?q="+divisaBase+"_"+divisa+"&compact=ultra&apiKey=a267f4d63d41a6155e29",
+		url: "https://free.currconv.com/api/v7/convert?q="+divisaBase+"_"+divisa+"&compact=y&apiKey=a267f4d63d41a6155e29",
 		//url: "http://free.currencyconverterapi.com/api/v3/convert?q="+divisaBase+"_"+divisa+"&compact=y",
 		type:"GET",
 		cache: false,
