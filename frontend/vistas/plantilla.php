@@ -130,6 +130,8 @@
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/carrito-de-compras.css">
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/ofertas.css">
+	
+	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/footer.css">
 
 	<!--=====================================
 	PLUGINS DE JAVASCRIPT
@@ -150,6 +152,8 @@
 	<script src="<?php echo $url; ?>vistas/js/plugins/md5-min.js"></script>
 
 	<script src="<?php echo $url; ?>vistas/js/plugins/dscountdown.min.js"></script>
+	
+	<script src="<?php echo $url; ?>vistas/js/plugins/knob.jquery.js"></script>
 
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
@@ -254,6 +258,9 @@ if(isset($_GET["ruta"])){
 
 	include "modulos/destacados.php";
 
+	//include "modulos/visitas.php";
+	
+	include "modulos/footer.php";
 }
 
 ?>
@@ -272,6 +279,7 @@ JAVASCRIPT PERSONALIZADO
 <script src="<?php echo $url; ?>vistas/js/usuarios.js"></script>
 <script src="<?php echo $url; ?>vistas/js/registroFacebook.js"></script>
 <script src="<?php echo $url; ?>vistas/js/carrito-de-compras.js"></script>
+<script src="<?php echo $url; ?>vistas/js/visitas.js"></script>
 
 <!--=====================================
 https://developers.facebook.com/

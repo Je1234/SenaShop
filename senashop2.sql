@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 12-03-2020 a las 22:23:53
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.1
+-- Host: 127.0.0.1
+-- Generation Time: Mar 14, 2020 at 09:29 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `senashop2`
+-- Database: `senashop2`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `banner`
+-- Table structure for table `banner`
 --
 
 CREATE TABLE `banner` (
@@ -40,7 +40,7 @@ CREATE TABLE `banner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `banner`
+-- Dumping data for table `banner`
 --
 
 INSERT INTO `banner` (`id`, `ruta`, `img`, `titulo1`, `titulo2`, `titulo3`, `estilo`, `fecha`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `banner` (`id`, `ruta`, `img`, `titulo1`, `titulo2`, `titulo3`, `est
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cabeceras`
+-- Table structure for table `cabeceras`
 --
 
 CREATE TABLE `cabeceras` (
@@ -66,7 +66,7 @@ CREATE TABLE `cabeceras` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `cabeceras`
+-- Dumping data for table `cabeceras`
 --
 
 INSERT INTO `cabeceras` (`id`, `ruta`, `titulo`, `descripcion`, `palabrasClaves`, `portada`, `fecha`) VALUES
@@ -76,7 +76,7 @@ INSERT INTO `cabeceras` (`id`, `ruta`, `titulo`, `descripcion`, `palabrasClaves`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categorias`
+-- Table structure for table `categorias`
 --
 
 CREATE TABLE `categorias` (
@@ -92,7 +92,7 @@ CREATE TABLE `categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `categorias`
+-- Dumping data for table `categorias`
 --
 
 INSERT INTO `categorias` (`id`, `categoria`, `ruta`, `fecha`, `oferta`, `precioOferta`, `descuentoOferta`, `imgOferta`, `finOferta`) VALUES
@@ -105,7 +105,7 @@ INSERT INTO `categorias` (`id`, `categoria`, `ruta`, `fecha`, `oferta`, `precioO
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `comentarios`
+-- Table structure for table `comentarios`
 --
 
 CREATE TABLE `comentarios` (
@@ -118,18 +118,19 @@ CREATE TABLE `comentarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `comentarios`
+-- Dumping data for table `comentarios`
 --
 
 INSERT INTO `comentarios` (`id`, `id_usuario`, `id_producto`, `calificacion`, `comentario`, `fecha`) VALUES
 (1, 2, 496, 0, '', '2018-06-12 21:07:46'),
 (2, 3, 496, 4, 'El curso es muy bueno pero puede ser mejor', '2018-06-12 20:54:49'),
-(3, 4, 496, 4.5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et diam quis orci maximus lobortis vel nec enim. Maecenas scelerisque fringilla scelerisque. ', '2018-06-12 20:55:48');
+(3, 4, 496, 4.5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et diam quis orci maximus lobortis vel nec enim. Maecenas scelerisque fringilla scelerisque. ', '2018-06-12 20:55:48'),
+(4, 15, 404, 0, '', '2020-03-14 15:11:44');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `comercio`
+-- Table structure for table `comercio`
 --
 
 CREATE TABLE `comercio` (
@@ -150,7 +151,7 @@ CREATE TABLE `comercio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `comercio`
+-- Dumping data for table `comercio`
 --
 
 INSERT INTO `comercio` (`id`, `impuesto`, `envioNacional`, `envioInternacional`, `tasaMinimaNal`, `tasaMinimaInt`, `pais`, `modoPaypal`, `clienteIdPaypal`, `llaveSecretaPaypal`, `modoPayu`, `merchantIdPayu`, `accountIdPayu`, `apiKeyPayu`) VALUES
@@ -159,7 +160,7 @@ INSERT INTO `comercio` (`id`, `impuesto`, `envioNacional`, `envioInternacional`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `compras`
+-- Table structure for table `compras`
 --
 
 CREATE TABLE `compras` (
@@ -174,10 +175,17 @@ CREATE TABLE `compras` (
   `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Dumping data for table `compras`
+--
+
+INSERT INTO `compras` (`id`, `id_usuario`, `id_producto`, `envio`, `metodo`, `email`, `direccion`, `pais`, `fecha`) VALUES
+(18, 15, 404, 0, 'payu', 'roman@gmail.com', '', '', '2020-03-14 15:11:41');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `deseos`
+-- Table structure for table `deseos`
 --
 
 CREATE TABLE `deseos` (
@@ -190,7 +198,7 @@ CREATE TABLE `deseos` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `plantilla`
+-- Table structure for table `plantilla`
 --
 
 CREATE TABLE `plantilla` (
@@ -206,7 +214,7 @@ CREATE TABLE `plantilla` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `plantilla`
+-- Dumping data for table `plantilla`
 --
 
 INSERT INTO `plantilla` (`id`, `barraSuperior`, `textoSuperior`, `colorFondo`, `colorTexto`, `logo`, `icono`, `redesSociales`, `fecha`) VALUES
@@ -215,7 +223,7 @@ INSERT INTO `plantilla` (`id`, `barraSuperior`, `textoSuperior`, `colorFondo`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `productos`
+-- Table structure for table `productos`
 --
 
 CREATE TABLE `productos` (
@@ -249,7 +257,7 @@ CREATE TABLE `productos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `productos`
+-- Dumping data for table `productos`
 --
 
 INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `tipo`, `ruta`, `titulo`, `titular`, `descripcion`, `multimedia`, `detalles`, `precio`, `portada`, `vistas`, `ventas`, `vistasGratis`, `ventasGratis`, `ofertadoPorCategoria`, `ofertadoPorSubCategoria`, `oferta`, `precioOferta`, `descuentoOferta`, `imgOferta`, `finOferta`, `nuevo`, `peso`, `entrega`, `fecha`) VALUES
@@ -664,7 +672,7 @@ INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `tipo`, `ruta`
 (401, 5, 18, 'virtual', 'aprende-javascript-desde-cero-47', 'Aprende Javascript desde Cero', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{ \"Clases\": \"121 Clases\",\"Tiempo\": \"24 horas de estudio\",\"Nivel\": \"Nivel B?sico\", \"Acceso\": \"Acceso de por vida\",\"Dispositivo\": \"Acceso en dispositivos m?viles y TV\",\"Certificado\": \"Certificado de finalizaci?n\"}', 100, 'vistas/img/productos/cursos/curso02.jpg', 402, 5, 0, 0, 1, 0, 1, 10, 90, 'vistas/img/ofertas/cursos.jpg', '0000-00-00 00:00:00', 0, 0, 0, '0000-00-00 00:00:00'),
 (402, 5, 18, 'virtual', 'curso-de-jquery-47', 'Curso de jQuery', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{ \"Clases\": \"121 Clases\",\"Tiempo\": \"24 horas de estudio\",\"Nivel\": \"Nivel B?sico\", \"Acceso\": \"Acceso de por vida\",\"Dispositivo\": \"Acceso en dispositivos m?viles y TV\",\"Certificado\": \"Certificado de finalizaci?n\"}', 100, 'vistas/img/productos/cursos/curso03.jpg', 402, 3, 0, 0, 1, 0, 1, 10, 90, 'vistas/img/ofertas/cursos.jpg', '0000-00-00 00:00:00', 0, 0, 0, '0000-00-00 00:00:00'),
 (403, 5, 18, 'virtual', 'curso-de-canvas-y-javascript-47', 'Curso de canvas y Javascript', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{ \"Clases\": \"121 Clases\",\"Tiempo\": \"24 horas de estudio\",\"Nivel\": \"Nivel B?sico\", \"Acceso\": \"Acceso de por vida\",\"Dispositivo\": \"Acceso en dispositivos m?viles y TV\",\"Certificado\": \"Certificado de finalizaci?n\"}', 100, 'vistas/img/productos/cursos/curso04.jpg', 405, 2, 0, 0, 1, 0, 1, 10, 90, 'vistas/img/ofertas/cursos.jpg', '0000-00-00 00:00:00', 0, 0, 0, '2020-03-01 18:30:20'),
-(404, 5, 18, 'virtual', 'curso-de-bootstrap-49', 'Curso de Bootstrap', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{ \"Clases\": \"121 Clases\",\"Tiempo\": \"24 horas de estudio\",\"Nivel\": \"Nivel B?sico\", \"Acceso\": \"Acceso de por vida\",\"Dispositivo\": \"Acceso en dispositivos m?viles y TV\",\"Certificado\": \"Certificado de finalizaci?n\"}', 100, 'vistas/img/productos/cursos/curso05.jpg', 404, 1, 0, 0, 1, 0, 1, 10, 90, 'vistas/img/ofertas/cursos.jpg', '0000-00-00 00:00:00', 0, 0, 0, '0000-00-00 00:00:00'),
+(404, 5, 18, 'virtual', 'curso-de-bootstrap-49', 'Curso de Bootstrap', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{ \"Clases\": \"121 Clases\",\"Tiempo\": \"24 horas de estudio\",\"Nivel\": \"Nivel B?sico\", \"Acceso\": \"Acceso de por vida\",\"Dispositivo\": \"Acceso en dispositivos m?viles y TV\",\"Certificado\": \"Certificado de finalizaci?n\"}', 100, 'vistas/img/productos/cursos/curso05.jpg', 0, 2, 0, 0, 1, 0, 1, 10, 90, 'vistas/img/ofertas/cursos.jpg', '0000-00-00 00:00:00', 0, 0, 0, '2020-03-14 15:13:02'),
 (405, 1, 1, 'fisico', 'falda-de-flores-9', 'Falda de Flores', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/ropa/ropa03.jpg', 0, 0, 1, 2, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00'),
 (406, 1, 1, 'fisico', 'vestido-jean-9', 'Vestido Jean', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/ropa/ropa04.jpg', 0, 0, 2, 65, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00'),
 (407, 1, 1, 'fisico', 'vestido-clasico-9', 'Vestido Clásico', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/ropa/ropa02.jpg', 0, 0, 3, 64, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00'),
@@ -729,7 +737,7 @@ INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `tipo`, `ruta`
 (465, 2, 7, 'fisico', 'tennis-rojo-11', 'Tennis Rojo', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado05.jpg', 191, 215, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '2017-10-27 22:54:47'),
 (466, 2, 7, 'fisico', 'tennis-azul-11', 'Tennis Azul', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado06.jpg', 199, 215, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '2017-11-01 16:58:18'),
 (467, 3, 11, 'fisico', 'pulsera-de-diamantes-11', 'Pulsera de diamantes', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/accesorios/accesorio01.jpg', 0, 0, 63, 4, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00'),
-(468, 3, 9, 'fisico', 'bolso-militar-11', 'Bolso Militar', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/accesorios/accesorio02.jpg', 0, 0, 74, 3, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '2020-03-02 21:18:16'),
+(468, 3, 9, 'fisico', 'bolso-militar-11', 'Bolso Militar', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/accesorios/accesorio02.jpg', 0, 0, 75, 3, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '2020-03-14 14:32:15'),
 (469, 3, 9, 'fisico', 'bolso-deportivo-gris-11', 'Bolso Deportivo Gris', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/accesorios/accesorio03.jpg', 0, 0, 147, 2, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '2020-03-01 18:16:12'),
 (470, 3, 12, 'fisico', 'collar-de-diamantes-11', 'Collar de diamantes', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/accesorios/accesorio04.jpg', 0, 0, 66, 1, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00'),
 (471, 5, 18, 'virtual', 'crea-aplicaciones-con-php-50', 'Crea aplicaciones con PHP', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{ \"Clases\": \"121 Clases\",\"Tiempo\": \"24 horas de estudio\",\"Nivel\": \"Nivel B?sico\", \"Acceso\": \"Acceso de por vida\",\"Dispositivo\": \"Acceso en dispositivos m?viles y TV\",\"Certificado\": \"Certificado de finalizaci?n\"}', 100, 'vistas/img/productos/cursos/curso01.jpg', 21, 384, 0, 0, 1, 0, 1, 10, 90, 'vistas/img/ofertas/cursos.jpg', '0000-00-00 00:00:00', 0, 0, 0, '0000-00-00 00:00:00'),
@@ -767,7 +775,7 @@ INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `tipo`, `ruta`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `slide`
+-- Table structure for table `slide`
 --
 
 CREATE TABLE `slide` (
@@ -786,7 +794,7 @@ CREATE TABLE `slide` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `slide`
+-- Dumping data for table `slide`
 --
 
 INSERT INTO `slide` (`id`, `imgFondo`, `tipoSlide`, `imgProducto`, `estiloImgProducto`, `estiloTextoSlide`, `titulo1`, `titulo2`, `titulo3`, `boton`, `url`, `fecha`) VALUES
@@ -798,7 +806,7 @@ INSERT INTO `slide` (`id`, `imgFondo`, `tipoSlide`, `imgProducto`, `estiloImgPro
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `subcategorias`
+-- Table structure for table `subcategorias`
 --
 
 CREATE TABLE `subcategorias` (
@@ -816,7 +824,7 @@ CREATE TABLE `subcategorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `subcategorias`
+-- Dumping data for table `subcategorias`
 --
 
 INSERT INTO `subcategorias` (`id`, `subcategoria`, `id_categoria`, `ruta`, `fecha`, `ofertadoPorCategoria`, `oferta`, `precioOferta`, `descuentoOferta`, `imgOferta`, `finOferta`) VALUES
@@ -845,7 +853,7 @@ INSERT INTO `subcategorias` (`id`, `subcategoria`, `id_categoria`, `ruta`, `fech
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -861,7 +869,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `password`, `email`, `modo`, `foto`, `verificacion`, `emailEncriptado`, `fecha`) VALUES
@@ -877,159 +885,227 @@ INSERT INTO `usuarios` (`id`, `nombre`, `password`, `email`, `modo`, `foto`, `ve
 (11, 'sfasffdasgdggdsg', '$2a$07$asxx54ahjppf45sd87a5aumUskocpQucMnvwsUt.aC6WLWGcLNcY6', 'Elcorreo123@gmail.com', 'directo', '', 1, '0766a292cd3b53589b22a2b3819560d8', '2020-02-29 19:11:25'),
 (12, 'pedro', '$2a$07$asxx54ahjppf45sd87a5aumUskocpQucMnvwsUt.aC6WLWGcLNcY6', 'fds@gmail.com', 'directo', '', 0, 'f32b09c44349d74ed23b935c28717a02', '2020-03-05 21:34:50'),
 (13, 'Jeison Charris', 'null', 'jeisonelgenio@hotmail.com', 'facebook', 'http://graph.facebook.com/3415301361830091/picture?type=large', 0, 'null', '2020-03-07 19:55:32'),
-(14, 'Jeison Ch', 'null', 'jeisonch1402@gmail.com', 'google', 'https://lh6.googleusercontent.com/-0zXMYS3Wk88/AAAAAAAAAAI/AAAAAAAAAAA/AKF05nAzKMNw912y4d_BH-AorpzDYMDULQ/s96-c/photo.jpg', 0, 'null', '2020-03-12 20:12:18');
+(14, 'Jeison Ch', 'null', 'jeisonch1402@gmail.com', 'google', 'https://lh6.googleusercontent.com/-0zXMYS3Wk88/AAAAAAAAAAI/AAAAAAAAAAA/AKF05nAzKMNw912y4d_BH-AorpzDYMDULQ/s96-c/photo.jpg', 0, 'null', '2020-03-12 20:12:18'),
+(15, 'Junior Calderin P', 'null', 'romanjunior.c.p@hotmail.com', 'facebook', 'http://graph.facebook.com/2923298681060499/picture?type=large', 0, 'null', '2020-03-14 04:51:18');
+
+-- --------------------------------------------------------
 
 --
--- Índices para tablas volcadas
+-- Table structure for table `visitaspaises`
+--
+
+CREATE TABLE `visitaspaises` (
+  `id` int(11) NOT NULL,
+  `pais` text NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visitaspaises`
+--
+
+INSERT INTO `visitaspaises` (`id`, `pais`, `cantidad`, `fecha`) VALUES
+(1, 'Colombia', 12, '2020-03-14 16:09:55'),
+(2, 'Unknown', 1, '2020-03-14 16:26:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visitaspersonas`
+--
+
+CREATE TABLE `visitaspersonas` (
+  `id` int(11) NOT NULL,
+  `ip` text NOT NULL,
+  `pais` text NOT NULL,
+  `visitas` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visitaspersonas`
+--
+
+INSERT INTO `visitaspersonas` (`id`, `ip`, `pais`, `visitas`, `fecha`) VALUES
+(1, '148.21.177.158', 'Colombia', 1, '2020-03-14 16:13:02'),
+(2, '192.168.0.6', 'Unknown', 1, '2020-03-14 16:26:12');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `banner`
+-- Indexes for table `banner`
 --
 ALTER TABLE `banner`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `cabeceras`
+-- Indexes for table `cabeceras`
 --
 ALTER TABLE `cabeceras`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `categorias`
+-- Indexes for table `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `comentarios`
+-- Indexes for table `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `comercio`
+-- Indexes for table `comercio`
 --
 ALTER TABLE `comercio`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `compras`
+-- Indexes for table `compras`
 --
 ALTER TABLE `compras`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `deseos`
+-- Indexes for table `deseos`
 --
 ALTER TABLE `deseos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `plantilla`
+-- Indexes for table `plantilla`
 --
 ALTER TABLE `plantilla`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `productos`
+-- Indexes for table `productos`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `slide`
+-- Indexes for table `slide`
 --
 ALTER TABLE `slide`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `subcategorias`
+-- Indexes for table `subcategorias`
 --
 ALTER TABLE `subcategorias`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- Indexes for table `visitaspaises`
+--
+ALTER TABLE `visitaspaises`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `visitaspersonas`
+--
+ALTER TABLE `visitaspersonas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `banner`
+-- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `cabeceras`
+-- AUTO_INCREMENT for table `cabeceras`
 --
 ALTER TABLE `cabeceras`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `categorias`
+-- AUTO_INCREMENT for table `categorias`
 --
 ALTER TABLE `categorias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `comentarios`
+-- AUTO_INCREMENT for table `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `comercio`
+-- AUTO_INCREMENT for table `comercio`
 --
 ALTER TABLE `comercio`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `compras`
+-- AUTO_INCREMENT for table `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT de la tabla `deseos`
+-- AUTO_INCREMENT for table `deseos`
 --
 ALTER TABLE `deseos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `plantilla`
+-- AUTO_INCREMENT for table `plantilla`
 --
 ALTER TABLE `plantilla`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `productos`
+-- AUTO_INCREMENT for table `productos`
 --
 ALTER TABLE `productos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=501;
 
 --
--- AUTO_INCREMENT de la tabla `slide`
+-- AUTO_INCREMENT for table `slide`
 --
 ALTER TABLE `slide`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `subcategorias`
+-- AUTO_INCREMENT for table `subcategorias`
 --
 ALTER TABLE `subcategorias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT de la tabla `usuarios`
+-- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `visitaspaises`
+--
+ALTER TABLE `visitaspaises`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `visitaspersonas`
+--
+ALTER TABLE `visitaspersonas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

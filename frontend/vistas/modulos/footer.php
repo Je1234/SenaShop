@@ -25,37 +25,29 @@ FOOTER
 
 				foreach ($categorias as $key => $value) {
 
-					if($value["estado"] != 0){
+					echo '<div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">
 
-						echo '<div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">
+						<h4><a href="'.$url.$value["ruta"].'" class="pixelCategorias" titulo="'.$value["categoria"].'">'.$value["categoria"].'</a></h4>
 
-							<h4><a href="'.$url.$value["ruta"].'" class="pixelCategorias" titulo="'.$value["categoria"].'">'.$value["categoria"].'</a></h4>
+						<hr>
 
-							<hr>
+						<ul>';
 
-							<ul>';
+						$item = "id_categoria";
 
-							$item = "id_categoria";
+						$valor = $value["id"];
 
-							$valor = $value["id"];
+						$subcategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
+						
+						foreach ($subcategorias as $key => $value) {
+						
+							echo '<li><a href="'.$url.$value["ruta"].'" class="pixelSubCategorias" titulo="'.$value["subcategoria"].'">'.$value["subcategoria"].'</a></li>';
 
-							$subcategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
-							
-							foreach ($subcategorias as $key => $value) {
+						}
 
-								if($value["estado"] != 0){
-							
-									echo '<li><a href="'.$url.$value["ruta"].'" class="pixelSubCategorias" titulo="'.$value["subcategoria"].'">'.$value["subcategoria"].'</a></li>';
+						echo '</ul>
 
-								}
-
-							}
-
-							echo '</ul>
-
-						</div>';
-
-					}
+					</div>';
 
 				}
 

@@ -6,7 +6,7 @@ class ControladorVisitas{
 	GUARDAR IP
 	=============================================*/
 
-	static public function ctrEnviarIp($ip, $pais, $codigo){
+	static public function ctrEnviarIp($ip, $pais){
 
 		$tabla = "visitaspersonas";
 		$visita = 1;
@@ -59,16 +59,6 @@ class ControladorVisitas{
 
 		if($respuestaInsertarIp == "ok" || $respuestaActualizarIp == "ok"){
 
-			/*=============================================
-			ACTUALIZAR NOTIFICACIONES NUEVAS VISITAS
-			=============================================*/
-
-			$traerNotificaciones = ControladorNotificaciones::ctrMostrarNotificaciones();
-
-			$nuevaVisita = $traerNotificaciones["nuevasVisitas"] + 1;
-
-			ModeloNotificaciones::mdlActualizarNotificaciones("notificaciones", "nuevasVisitas", $nuevaVisita);
-
 			$tablaPais = "visitaspaises";
 
 			/*=============================================
@@ -85,7 +75,7 @@ class ControladorVisitas{
 
 				$cantidad = 1;
 
-				$insertarPais = ModeloVisitas::mdlInsertarPais($tablaPais, $pais, $codigo, $cantidad);
+				$insertarPais = ModeloVisitas::mdlInsertarPais($tablaPais, $pais, $cantidad);
 
 			}else{
 
@@ -106,7 +96,7 @@ class ControladorVisitas{
 	MOSTRAR EL TOTAL DE VISITAS
 	=============================================*/	
 
-	static public function ctrMostrarTotalVisitas(){
+	public function ctrMostrarTotalVisitas(){
 
 		$tabla = "visitaspaises";
 
@@ -120,7 +110,7 @@ class ControladorVisitas{
 	MOSTRAR LOS PRIMEROS 6 PAISES DE VISITAS
 	=============================================*/
 	
-	static public function ctrMostrarPaises(){
+	public function ctrMostrarPaises(){
 
 		$tabla = "visitaspaises";
 	
