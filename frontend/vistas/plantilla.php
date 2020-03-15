@@ -260,9 +260,9 @@ if(isset($_GET["ruta"])){
 
 	//include "modulos/visitas.php";
 	
-	include "modulos/footer.php";
+	
 }
-
+include "modulos/footer.php";
 ?>
 
 
