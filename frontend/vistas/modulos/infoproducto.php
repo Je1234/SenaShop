@@ -286,11 +286,9 @@ INFOPRODUCTOS
 					TITULO
 					=============================================*/	
 
-					if($infoproducto["precio"] == 0){
+					if($infoproducto["precio"] > 0){
 
-						echo '<h2 class="text-muted">GRATIS</h2>';
-
-					}else{
+					
 
 						if($infoproducto["oferta"] == 0){
 
@@ -437,43 +435,8 @@ INFOPRODUCTOS
 
 					if($infoproducto["entrega"] == 0){
 
-						if($infoproducto["precio"] == 0){
+						if($infoproducto["precio"] > 0){
 
-							echo '<h4 class="col-md-12 col-sm-0 col-xs-0">
-
-								<hr>
-
-								<span class="label label-default" style="font-weight:100">
-
-									<i class="fa fa-clock-o" style="margin-right:5px"></i>
-									Entrega inmediata | 
-									<i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
-									'.$infoproducto["ventasGratis"].' inscritos |
-									<i class="fa fa-eye" style="margin:0px 5px"></i>
-									Visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">'.$infoproducto["vistasGratis"].'</span> personas
-
-								</span>
-
-							</h4>
-
-							<h4 class="col-lg-0 col-md-0 col-xs-12">
-
-								<hr>
-
-								<small>
-
-									<i class="fa fa-clock-o" style="margin-right:5px"></i>
-									Entrega inmediata <br>
-									<i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
-									'.$infoproducto["ventasGratis"].' inscritos <br>
-									<i class="fa fa-eye" style="margin:0px 5px"></i>
-									Visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">'.$infoproducto["vistasGratis"].'</span> personas
-
-								</small>
-
-							</h4>';
-
-						}else{
 
 							echo '<h4 class="col-md-12 col-sm-0 col-xs-0">
 
@@ -513,43 +476,9 @@ INFOPRODUCTOS
 
 					}else{
 
-						if($infoproducto["precio"] == 0){
+						if($infoproducto["precio"] > 0){
 
-							echo '<h4 class="col-md-12 col-sm-0 col-xs-0">
-
-								<hr>
-
-								<span class="label label-default" style="font-weight:100">
-								
-									<i class="fa fa-clock-o" style="margin-right:5px"></i>
-									'.$infoproducto["entrega"].' días hábiles para la entrega  |
-									<i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
-									'.$infoproducto["ventasGratis"].' solicitudes  |
-									<i class="fa fa-eye" style="margin:0px 5px"></i>
-									Visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">'.$infoproducto["vistasGratis"].'</span> personas  
-
-								</span>
-
-							</h4>
-
-							<h4 class="col-lg-0 col-md-0 col-xs-12">
-
-								<hr>
-
-								<small>
-								
-									<i class="fa fa-clock-o" style="margin-right:5px"></i>
-									'.$infoproducto["entrega"].' días hábiles para la entrega  <br>
-									<i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
-									'.$infoproducto["ventasGratis"].' solicitudes  <br>
-									<i class="fa fa-eye" style="margin:0px 5px"></i>
-									Visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">'.$infoproducto["vistasGratis"].' </span> personas 
-
-								</small>
-
-							</h4>';
-
-						}else{
+							
 
 							echo '<h4 class="col-md-12 col-sm-0 col-xs-0">
 
@@ -611,11 +540,11 @@ INFOPRODUCTOS
 
 							if($infoproducto["tipo"]=="virtual"){
 						
-								echo '<button class="btn btn-default btn-block btn-lg backColor agregarGratis idProducto="'.$infoproducto["id"].'" idUsuario="'.$_SESSION["id"].'" tipo="'.$infoproducto["tipo"].'" ">ACCEDER AHORA</button>';
+								echo '<button class="btn btn-default btn-block btn-lg backColor  idProducto="'.$infoproducto["id"].'" idUsuario="'.$_SESSION["id"].'" tipo="'.$infoproducto["tipo"].'" ">ACCEDER AHORA</button>';
 
 							}else{
 
-								echo '<button class="btn btn-default btn-block btn-lg backColor agregarGratis idProducto="'.$infoproducto["id"].'" idUsuario="'.$_SESSION["id"].'" tipo="'.$infoproducto["tipo"].'" ">SOLICITAR AHORA</button>
+								echo '<button class="btn btn-default btn-block btn-lg backColor  idProducto="'.$infoproducto["id"].'" idUsuario="'.$_SESSION["id"].'" tipo="'.$infoproducto["tipo"].'" ">SOLICITAR AHORA</button>
 								 <br>
 								 
 								 <div class="col-xs-12 panel panel-info text-left">
@@ -1153,11 +1082,9 @@ ARTÏCULOS RELACIONADOS
 
 						<div class="col-xs-6 precio">';
 
-						if($value["precio"] == 0){
+						if($value["precio"] > 0){
 
-							echo '<h2><small>GRATIS</small></h2>';
-
-						}else{
+							
 
 							if($value["oferta"] != 0){
 

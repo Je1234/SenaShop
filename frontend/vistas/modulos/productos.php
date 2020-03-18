@@ -11,9 +11,9 @@ $ruta = $rutas[0];
 
 $banner = ControladorProductos::ctrMostrarBanner($ruta);
 
-$titulo1 = json_decode($banner["titulo1"],true);
+/*$titulo1 = json_decode($banner["titulo1"],true);
 $titulo2 = json_decode($banner["titulo2"],true);
-$titulo3 = json_decode($banner["titulo3"],true);
+$titulo3 = json_decode($banner["titulo3"],true);*/
 
 if($banner != null){
 
@@ -173,13 +173,7 @@ LISTAR PRODUCTOS
 			LLAMADO DE PRODUCTOS DE CATEGORÍAS, SUBCATEGORÍAS Y DESTACADOS
 			=============================================*/
 
-			if($rutas[0] == "articulos-gratis"){
-
-				$item2 = "precio";
-				$valor2 = 0;
-				$ordenar = "id";
-
-			}else if($rutas[0] == "lo-mas-vendido"){
+			 if($rutas[0] == "lo-mas-vendido"){
 
 				$item2 = null;
 				$valor2 = null;
