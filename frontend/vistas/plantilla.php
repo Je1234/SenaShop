@@ -133,6 +133,8 @@
 	
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/footer.css">
 
+	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/footerStilo.css">
+
 	<!--=====================================
 	PLUGINS DE JAVASCRIPT
 	======================================-->
@@ -260,7 +262,7 @@ if(isset($_GET["ruta"])){
 
 	//include "modulos/visitas.php";
 	
-	include "modulos/footer.php";
+	include "modulos/footerV2.php";
 }
 
 ?>
